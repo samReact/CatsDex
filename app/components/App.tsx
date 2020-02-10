@@ -7,6 +7,8 @@ import {PersistGate} from 'redux-persist/integration/react';
 import catsReducer from '../reducers/cats.reducer';
 import AsyncStorage from '@react-native-community/async-storage';
 import CatCard from './CatCard';
+import CatsList from './CatsList';
+import {Content, Container, Text} from 'native-base';
 
 declare global {
   interface Window {
@@ -29,16 +31,14 @@ const App: React.FC = () => {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <CatCard />
+        <Container>
+          <Content style={{flex: 1}} padder>
+            <CatsList />
+          </Content>
+        </Container>
       </PersistGate>
     </Provider>
   );
 };
-
-const styles = StyleSheet.create({
-  text: {
-    color: 'red',
-  },
-});
 
 export default App;

@@ -1,4 +1,4 @@
-interface ICat {
+export interface ICat {
   id: number;
   name: string;
   url: string;
@@ -6,7 +6,7 @@ interface ICat {
   breed: string;
 }
 
-interface IState {
+export interface IState {
   cats: Array<ICat>;
 }
 
