@@ -1,12 +1,12 @@
 import React from 'react';
-import {StyleSheet, Text} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {persistStore, persistReducer} from 'redux-persist';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import catsReducer from '../reducers/cats.reducer';
 import AsyncStorage from '@react-native-community/async-storage';
-import {Button} from 'native-base';
+import CatCard from './CatCard';
 
 declare global {
   interface Window {
@@ -29,10 +29,7 @@ const App: React.FC = () => {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <Text style={styles.text}>Hello World !</Text>
-        <Button success>
-          <Text>Click Me!</Text>
-        </Button>
+        <CatCard />
       </PersistGate>
     </Provider>
   );
