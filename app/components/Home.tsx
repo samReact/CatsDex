@@ -31,7 +31,7 @@ const Home = () => {
       </Content>
       <Footer>
         <FooterTab>
-          <CatUpdateModal />
+          <CatUpdateModal cat={false} />
         </FooterTab>
       </Footer>
     </Container>

@@ -1,4 +1,8 @@
-import {DELETE_CAT, ADD_CAT} from '../actions/types/cats.actions.types';
+import {
+  DELETE_CAT,
+  ADD_CAT,
+  UPDATE_CAT,
+} from '../actions/types/cats.actions.types';
 
 export interface ICat {
   id: number;
@@ -58,6 +62,12 @@ const catsReducer = (state = initialState, action: any) => {
         ...state,
         cats: [...state.cats, payload],
         counter: state.counter + 1,
+      };
+    case UPDATE_CAT:
+      let filteredCats = state.cats.filter(cat => cat.id !== payload.id);
+      return {
+        ...state,
+        cats: [...filteredCats, payload],
       };
   }
   return state;

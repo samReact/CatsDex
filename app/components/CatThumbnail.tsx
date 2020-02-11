@@ -2,6 +2,7 @@ import React from 'react';
 import {Left, Thumbnail, Body, Text, Right, Button} from 'native-base';
 import {ICat} from '../reducers/cats.reducer';
 import {TouchableOpacity, StyleSheet} from 'react-native';
+import CatUpdateModal from './CatUpdateModal';
 
 type Props = {
   cat: ICat;
@@ -26,9 +27,7 @@ const CatThumbnail: React.FC<Props> = ({cat, visible}) => {
         </Text>
       </Body>
       <Right>
-        <Button transparent>
-          <Text>View</Text>
-        </Button>
+        <CatUpdateModal cat={cat} />
       </Right>
     </TouchableOpacity>
   );

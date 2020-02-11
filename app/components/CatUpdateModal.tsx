@@ -18,53 +18,61 @@ import {
 } from 'native-base';
 
 import validator from 'validator';
-import {ADD_CAT} from '../actions/types/cats.actions.types';
-import {IState} from '../reducers/cats.reducer';
+import {ADD_CAT, UPDATE_CAT} from '../actions/types/cats.actions.types';
+import {IState, ICat} from '../reducers/cats.reducer';
 
-const CatUpdateModal = () => {
+type Props = {
+  cat: ICat;
+};
+
+const CatUpdateModal: React.FC<Props> = ({cat}) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [name, setName] = useState('');
-  const [nameError, setNameError] = useState(false);
   const [breed, setBreed] = useState('');
-  const [breedError, setBreedError] = useState(false);
   const [url, setUrl] = useState('');
-  const [urlError, setUrlError] = useState(false);
   const [description, setDescription] = useState('');
-  const [descriptionError, setDescriptionError] = useState(false);
   const [ready, setReady] = useState(false);
 
   const counter = useSelector((state: IState) => state.counter);
-
   const dispatch = useDispatch();
 
   const handleSubmit = () => {
-    let id = counter + 1;
-    dispatch({payload: {id, name, breed, url, description}, type: ADD_CAT});
+    if (cat) {
+      dispatch({
+        payload: {id: cat.id, name, breed, url, description},
+        type: UPDATE_CAT,
+      });
+    } else {
+      let id = counter + 1;
+      dispatch({payload: {id, name, breed, url, description}, type: ADD_CAT});
+    }
     setModalVisible(false);
   };
 
-  const handleReset = () => {
-    setName('');
-    setBreed('');
-    setDescription('');
-    setUrl('');
-  };
+  useEffect(() => {
+    if (cat) {
+      setName(cat.name);
+      setBreed(cat.breed);
+      setUrl(cat.url);
+      setDescription(cat.description);
+    }
+  }, [cat]);
 
   useEffect(() => {
-    setNameError(validator.isEmpty(name));
-    setUrlError(!validator.isURL(url));
-    setBreedError(validator.isEmpty(breed));
-    setDescriptionError(validator.isEmpty(description));
-  }, [name, url, breed, description]);
-
-  useEffect(() => {
-    if (!nameError && !urlError && !descriptionError && !breedError) {
+    if (
+      !validator.isEmpty(name) &&
+      validator.isURL(url) &&
+      !validator.isEmpty(description) &&
+      !validator.isEmpty(breed)
+    ) {
       setReady(true);
     } else {
       setReady(false);
     }
-  }, [nameError, urlError, breedError, descriptionError]);
-  const textareaStyle = {borderColor: descriptionError ? 'red' : 'green'};
+  }, [name, breed, url, description]);
+  const textareaStyle = {
+    borderColor: validator.isEmpty(description) ? 'red' : 'green',
+  };
 
   return (
     <>
@@ -72,7 +80,6 @@ const CatUpdateModal = () => {
         animationType="slide"
         transparent={false}
         visible={modalVisible}
-        onShow={() => handleReset()}
         onRequestClose={() => {
           setModalVisible(false);
         }}>
@@ -89,29 +96,41 @@ const CatUpdateModal = () => {
                 onPress={() => handleSubmit()}
                 transparent
                 disabled={!ready}>
-                <Text>Add</Text>
+                <Text>{cat ? 'Edit' : 'Add'}</Text>
               </Button>
             </Right>
           </Header>
           <Content padder>
             <Form>
-              <Item floatingLabel success={!nameError} error={nameError}>
+              <Item
+                stackedLabel
+                success={!validator.isEmpty(name)}
+                error={validator.isEmpty(name)}>
                 <Label>Name</Label>
-                <Input value={name} onChangeText={e => setName(e)} />
+                <Input onChangeText={e => setName(e)} defaultValue={cat.name} />
               </Item>
-              <Item floatingLabel success={!urlError} error={urlError}>
+              <Item
+                stackedLabel
+                success={validator.isURL(url)}
+                error={!validator.isURL(url)}>
                 <Label>Photo url</Label>
-                <Input value={url} onChangeText={e => setUrl(e)} />
+                <Input onChangeText={e => setUrl(e)} defaultValue={cat.url} />
               </Item>
-              <Item floatingLabel success={!breedError} error={breedError}>
+              <Item
+                stackedLabel
+                success={!validator.isEmpty(breed)}
+                error={validator.isEmpty(breed)}>
                 <Label>Breed</Label>
-                <Input value={breed} onChangeText={e => setBreed(e)} />
+                <Input
+                  onChangeText={e => setBreed(e)}
+                  defaultValue={cat.breed}
+                />
               </Item>
             </Form>
             <Form style={{padding: 5, marginTop: 10}}>
               <Textarea
                 rowSpan={5}
-                value={description}
+                defaultValue={cat.description}
                 onChangeText={e => setDescription(e)}
                 bordered
                 underline={false}
@@ -122,8 +141,12 @@ const CatUpdateModal = () => {
           </Content>
         </Container>
       </Modal>
-      <Button onPress={() => setModalVisible(true)}>
-        <Icon name="add" />
+      <Button onPress={() => setModalVisible(true)} transparent>
+        <Icon
+          name={cat ? 'pencil-outline' : 'plus-circle-outline'}
+          type="MaterialCommunityIcons"
+          style={{color: 'orange'}}
+        />
       </Button>
     </>
   );
