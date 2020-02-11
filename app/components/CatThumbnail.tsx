@@ -1,23 +1,17 @@
 import React from 'react';
-import {
-  ListItem,
-  Left,
-  Thumbnail,
-  Body,
-  Text,
-  Right,
-  Button,
-} from 'native-base';
+import {Left, Thumbnail, Body, Text, Right, Button} from 'native-base';
 import {ICat} from '../reducers/cats.reducer';
+import {TouchableOpacity, StyleSheet} from 'react-native';
 
 type Props = {
   cat: ICat;
+  visible: () => void;
 };
 
-const CatThumbnail: React.FC<Props> = ({cat}) => {
+const CatThumbnail: React.FC<Props> = ({cat, visible}) => {
   const {name, url, breed} = cat;
   return (
-    <ListItem thumbnail>
+    <TouchableOpacity onPress={visible} style={styles.touchable}>
       <Left>
         <Thumbnail
           source={{
@@ -36,8 +30,12 @@ const CatThumbnail: React.FC<Props> = ({cat}) => {
           <Text>View</Text>
         </Button>
       </Right>
-    </ListItem>
+    </TouchableOpacity>
   );
 };
+
+const styles = StyleSheet.create({
+  touchable: {flex: 1, flexDirection: 'row', padding: 5},
+});
 
 export default CatThumbnail;
