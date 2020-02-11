@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Modal, Alert} from 'react-native';
 import CatCard from './CatCard';
 import CatThumbnail from './CatThumbnail';
+import {Container, Content} from 'native-base';
 
 const CatModal = ({cat}) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -14,7 +15,11 @@ const CatModal = ({cat}) => {
         onRequestClose={() => {
           Alert.alert('Modal has been closed.');
         }}>
-        <CatCard cat={cat} visible={() => setModalVisible(false)} />
+        <Container>
+          <Content padder>
+            <CatCard cat={cat} visible={() => setModalVisible(false)} />
+          </Content>
+        </Container>
       </Modal>
       <CatThumbnail cat={cat} visible={() => setModalVisible(true)} />
     </>

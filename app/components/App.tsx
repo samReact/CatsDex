@@ -6,9 +6,7 @@ import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import catsReducer from '../reducers/cats.reducer';
 import AsyncStorage from '@react-native-community/async-storage';
-import CatCard from './CatCard';
-import CatsList from './CatsList';
-import {Content, Container, Text} from 'native-base';
+import Home from './Home';
 
 declare global {
   interface Window {
@@ -31,11 +29,7 @@ const App: React.FC = () => {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <Container>
-          <Content style={{flex: 1}} padder>
-            <CatsList />
-          </Content>
-        </Container>
+        <Home />
       </PersistGate>
     </Provider>
   );
