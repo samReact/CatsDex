@@ -145,7 +145,7 @@ const CatUpdateModal: React.FC<Props> = ({cat}) => {
         <Icon
           name={cat ? 'pencil-outline' : 'plus-circle-outline'}
           type="MaterialCommunityIcons"
-          style={{color: 'orange'}}
+          style={{color: 'orange', fontSize: 30}}
         />
       </Button>
     </>

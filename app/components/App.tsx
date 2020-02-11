@@ -1,11 +1,11 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
 import {persistStore, persistReducer} from 'redux-persist';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
-import catsReducer from '../reducers/cats.reducer';
 import AsyncStorage from '@react-native-community/async-storage';
+
+import catsReducer from '../reducers/cats.reducer';
 import Home from './Home';
 
 declare global {

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image} from 'react-native';
+import {Image, StyleSheet} from 'react-native';
 
 import {
   Card,
@@ -31,11 +31,7 @@ const CatCard: React.FC<Props> = ({cat, visible}) => {
         </Body>
         <Right>
           <Button transparent onPress={visible}>
-            <Icon
-              type="FontAwesome"
-              name="close"
-              style={{fontSize: 20, color: '#888'}}
-            />
+            <Icon type="FontAwesome" name="close" style={styles.button} />
           </Button>
         </Right>
       </CardItem>
@@ -44,7 +40,7 @@ const CatCard: React.FC<Props> = ({cat, visible}) => {
           source={{
             uri: cat.url,
           }}
-          style={{height: 200, width: null, flex: 1}}
+          style={styles.image}
         />
       </CardItem>
       <CardItem>
@@ -53,7 +49,8 @@ const CatCard: React.FC<Props> = ({cat, visible}) => {
         </Body>
       </CardItem>
       <CardItem>
-        <Left>
+        <Left />
+        <Right>
           <Button
             transparent
             onPress={() => dispatch({payload: cat, type: DELETE_CAT})}>
@@ -64,20 +61,15 @@ const CatCard: React.FC<Props> = ({cat, visible}) => {
             />
             <Text style={{color: 'red'}}>Delete</Text>
           </Button>
-        </Left>
-        <Right>
-          <Button transparent>
-            <Icon
-              type="FontAwesome"
-              name="edit"
-              style={{fontSize: 20, color: 'orange'}}
-            />
-            <Text style={{color: 'orange'}}>Edit</Text>
-          </Button>
         </Right>
       </CardItem>
     </Card>
   );
 };
+
+const styles = StyleSheet.create({
+  button: {fontSize: 20, color: '#888'},
+  image: {height: 200, width: null, flex: 1},
+});
 
 export default CatCard;
