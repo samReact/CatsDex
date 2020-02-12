@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import {
   Item,
   Form,
-  Label,
   Input,
   Textarea,
   Button,
@@ -75,44 +74,48 @@ const CatForm: React.FC = () => {
 
   return (
     <ScrollView>
-      <Form>
-        <Item
-          stackedLabel
-          success={!validator.isEmpty(name)}
-          error={validator.isEmpty(name)}>
-          <Label>Name</Label>
-          <Input
-            onChangeText={e => setName(e)}
-            defaultValue={cat.name || name}
-          />
-        </Item>
-        <Item
-          stackedLabel
-          success={validator.isURL(url)}
-          error={!validator.isURL(url)}>
-          <Label>Photo url</Label>
-          <Input onChangeText={e => setUrl(e)} defaultValue={cat.url} />
-        </Item>
-        <Item
-          picker
-          error={validator.isEmpty(breed)}
-          success={!validator.isEmpty(breed)}>
-          <Picker
-            mode="dropdown"
-            iosIcon={<Icon name="arrow-down" />}
-            style={{width: undefined}}
-            placeholder="Select cat's breed"
-            placeholderStyle={{color: '#bfc6ea'}}
-            placeholderIconColor="#007aff"
-            selectedValue={breed}
-            onValueChange={e => setBreed(e)}>
-            {breeds.map((e, i) => (
-              <Picker.Item key={i} label={e} value={e} />
-            ))}
-          </Picker>
-        </Item>
-      </Form>
-      <Form style={styles.form}>
+      <Item
+        regular
+        style={styles.marginTop}
+        success={!validator.isEmpty(name)}
+        error={validator.isEmpty(name)}>
+        <Input
+          onChangeText={e => setName(e)}
+          defaultValue={cat.name || name}
+          placeholder="Name"
+        />
+      </Item>
+      <Item
+        regular
+        style={styles.marginTop}
+        success={validator.isURL(url)}
+        error={!validator.isURL(url)}>
+        <Input
+          onChangeText={e => setUrl(e)}
+          defaultValue={cat.url}
+          placeholder="Photo url"
+        />
+      </Item>
+      <Item
+        picker
+        style={styles.marginTop}
+        error={validator.isEmpty(breed)}
+        success={!validator.isEmpty(breed)}>
+        <Picker
+          mode="dropdown"
+          iosIcon={<Icon name="arrow-down" />}
+          style={{width: undefined}}
+          placeholder="Select cat's breed"
+          placeholderStyle={{color: '#bfc6ea'}}
+          placeholderIconColor="#007aff"
+          selectedValue={breed}
+          onValueChange={e => setBreed(e)}>
+          {breeds.map((e, i) => (
+            <Picker.Item key={i} label={e} value={e} />
+          ))}
+        </Picker>
+      </Item>
+      <Form style={styles.marginTop}>
         <Textarea
           rowSpan={5}
           defaultValue={cat.description}
@@ -136,7 +139,7 @@ const CatForm: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  form: {marginTop: 20},
+  marginTop: {marginTop: 20},
   buttonView: {marginTop: 30},
   button: {
     justifyContent: 'center',

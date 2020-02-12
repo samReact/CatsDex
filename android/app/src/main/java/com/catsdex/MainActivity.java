@@ -10,16 +10,27 @@ public class MainActivity extends ReactActivity {
    * Returns the name of the main component registered from JavaScript. This is used to schedule
    * rendering of the component.
    */
+//  @Override
+//  protected void onCreate(Bundle savedInstanceState) {
+//    SplashScreen.show(this);
+//    super.onCreate(savedInstanceState);
+//  }
   @Override
-  protected void onCreate(Bundle savedInstanceState) {
+  protected String getMainComponentName() {
     SplashScreen.show(this);
-    super.onCreate(savedInstanceState);
+    return "CatsDex";
   }
 
   @Override
-  protected String getMainComponentName() {
-    return "CatsDex";
+  public void invokeDefaultOnBackPressed() {
+    moveTaskToBack(true);
   }
+
+
+//  @Override
+//  protected String getMainComponentName() {
+//    return "CatsDex";
+//  }
 
 
 }

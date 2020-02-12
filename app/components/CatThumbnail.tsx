@@ -1,5 +1,5 @@
 import React from 'react';
-import {Thumbnail, Text, View} from 'native-base';
+import {Thumbnail, Text, View, Icon} from 'native-base';
 import {ICat} from '../reducers/cats.reducer';
 import {StyleSheet, TouchableHighlight} from 'react-native';
 import colorsConstants from '../constants/colors.constants';
@@ -23,7 +23,18 @@ const CatThumbnail: React.FC<Props> = ({cat, visible}) => {
           }}
         />
         <View style={styles.nameView}>
-          <Text style={styles.name}>{name}</Text>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+            }}>
+            <Text style={styles.name}>{name}</Text>
+            <Icon
+              type="MaterialCommunityIcons"
+              name="gender-male"
+              style={{fontSize: 18, paddingLeft: 10}}
+            />
+          </View>
           <Text note numberOfLines={1}>
             {breed}
           </Text>
