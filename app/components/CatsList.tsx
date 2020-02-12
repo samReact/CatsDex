@@ -1,51 +1,49 @@
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {
-  SafeAreaView,
-  Text,
-  View,
-  StyleSheet,
-  TouchableOpacity,
-} from 'react-native';
+import {SafeAreaView, View, StyleSheet, TouchableOpacity} from 'react-native';
 import {SwipeListView} from 'react-native-swipe-list-view';
+import {useHistory} from 'react-router-native';
+import {Icon, Button} from 'native-base';
 
-import {IState, ICat} from '../reducers/cats.reducer';
+import {IState} from '../reducers/cats.reducer';
 import CatModal from './CatModal';
-import {Icon} from 'native-base';
 import {DELETE_CAT} from '../actions/types/cats.actions.types';
-import CatUpdateModal from './CatUpdateModal';
 
 const CatsList: React.FC = () => {
   const cats = useSelector((state: IState) => state.cats);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   return (
     <SafeAreaView>
-      {/* {cats.map((cat: ICat) => (  
-        <CatModal key={cat.id} cat={cat} />
-      ))} */}
-
       <SwipeListView
         data={cats}
         renderItem={data => <CatModal cat={data.item} />}
         renderHiddenItem={data => (
           <View style={styles.rowBack}>
             <View style={[styles.backRightBtn, styles.backRightBtnLeft]}>
-              <CatUpdateModal cat={data.item} />
+              <Button
+                onPress={() => {
+                  history.push({
+                    pathname: '/updateCat',
+                    state: {cat: data.item},
+                  });
+                }}
+                transparent>
+                <Icon name={'edit'} type="Feather" style={styles.icon} />
+              </Button>
             </View>
+
             <TouchableOpacity
               onPress={() => dispatch({payload: data.item, type: DELETE_CAT})}
               style={[styles.backRightBtn, styles.backRightBtnRight]}>
-              <Icon
-                type="FontAwesome"
-                name="trash"
-                style={{fontSize: 20, color: '#FFF'}}
-              />
+              <Icon type="FontAwesome" name="trash" style={styles.icon} />
             </TouchableOpacity>
           </View>
         )}
         disableRightSwipe
         rightOpenValue={-150}
+        keyExtractor={data => data.id.toString()}
       />
     </SafeAreaView>
   );
@@ -76,10 +74,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
     right: 0,
   },
-  controls: {
-    alignItems: 'center',
-    marginBottom: 30,
-  },
+  icon: {color: '#fff', fontSize: 20},
 });
 
 export default CatsList;

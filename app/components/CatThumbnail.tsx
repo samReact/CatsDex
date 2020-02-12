@@ -1,8 +1,7 @@
 import React from 'react';
-import {Left, Thumbnail, Body, Text, Right, View} from 'native-base';
+import {Thumbnail, Text, View} from 'native-base';
 import {ICat} from '../reducers/cats.reducer';
 import {StyleSheet, TouchableHighlight} from 'react-native';
-import CatUpdateModal from './CatUpdateModal';
 
 type Props = {
   cat: ICat;
@@ -22,7 +21,7 @@ const CatThumbnail: React.FC<Props> = ({cat, visible}) => {
             uri: url,
           }}
         />
-        <View style={{paddingLeft: 20}}>
+        <View style={styles.nameView}>
           <Text style={styles.name}>{name}</Text>
           <Text note numberOfLines={1}>
             {breed}
@@ -42,6 +41,7 @@ const styles = StyleSheet.create({
     borderBottomColor: '#DDD',
     borderBottomWidth: 1,
   },
+  nameView: {paddingLeft: 20},
   name: {fontFamily: 'Amatic-Bold', fontSize: 24},
 });
 
