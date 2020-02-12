@@ -23,7 +23,7 @@ type Props = {
 const CatCard: React.FC<Props> = ({cat, visible}) => {
   const dispatch = useDispatch();
   return (
-    <Card>
+    <Card style={{flex: 1}}>
       <CardItem>
         <Body>
           <Text>{cat.name}</Text>

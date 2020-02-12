@@ -1,7 +1,7 @@
 import React from 'react';
-import {Left, Thumbnail, Body, Text, Right, Button} from 'native-base';
+import {Left, Thumbnail, Body, Text, Right, View} from 'native-base';
 import {ICat} from '../reducers/cats.reducer';
-import {TouchableOpacity, StyleSheet} from 'react-native';
+import {StyleSheet, TouchableHighlight} from 'react-native';
 import CatUpdateModal from './CatUpdateModal';
 
 type Props = {
@@ -12,29 +12,36 @@ type Props = {
 const CatThumbnail: React.FC<Props> = ({cat, visible}) => {
   const {name, url, breed} = cat;
   return (
-    <TouchableOpacity onPress={visible} style={styles.touchable}>
-      <Left>
+    <TouchableHighlight
+      onPress={visible}
+      style={styles.touchable}
+      underlayColor={'#DDD'}>
+      <>
         <Thumbnail
           source={{
             uri: url,
           }}
         />
-      </Left>
-      <Body>
-        <Text style={styles.name}>{name}</Text>
-        <Text note numberOfLines={1}>
-          {breed}
-        </Text>
-      </Body>
-      <Right>
-        <CatUpdateModal cat={cat} />
-      </Right>
-    </TouchableOpacity>
+        <View style={{paddingLeft: 20}}>
+          <Text style={styles.name}>{name}</Text>
+          <Text note numberOfLines={1}>
+            {breed}
+          </Text>
+        </View>
+      </>
+    </TouchableHighlight>
   );
 };
 
 const styles = StyleSheet.create({
-  touchable: {flex: 1, flexDirection: 'row', padding: 5},
+  touchable: {
+    flex: 1,
+    flexDirection: 'row',
+    padding: 5,
+    backgroundColor: '#FFF',
+    borderBottomColor: '#DDD',
+    borderBottomWidth: 1,
+  },
   name: {fontFamily: 'Amatic-Bold', fontSize: 24},
 });
 

@@ -77,7 +77,7 @@ const CatUpdateModal: React.FC<Props> = ({cat}) => {
   return (
     <>
       <Modal
-        animationType="slide"
+        animationType="none"
         transparent={false}
         visible={modalVisible}
         onRequestClose={() => {
@@ -145,7 +145,7 @@ const CatUpdateModal: React.FC<Props> = ({cat}) => {
         <Icon
           name={cat ? 'pencil-outline' : 'plus-circle-outline'}
           type="MaterialCommunityIcons"
-          style={{color: 'orange', fontSize: 30}}
+          style={{color: '#FFF', fontSize: 30}}
         />
       </Button>
     </>

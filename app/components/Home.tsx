@@ -30,7 +30,7 @@ const Home = () => {
         </Body>
         <Right />
       </Header>
-      <Content style={{flex: 1}} padder>
+      <Content contentContainerStyle={{flex: 1}} padder>
         <CatsList />
       </Content>
       <Footer>
