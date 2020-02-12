@@ -21,7 +21,7 @@ const CatThumbnail: React.FC<Props> = ({cat, visible}) => {
         />
       </Left>
       <Body>
-        <Text>{name}</Text>
+        <Text style={styles.name}>{name}</Text>
         <Text note numberOfLines={1}>
           {breed}
         </Text>
@@ -35,6 +35,7 @@ const CatThumbnail: React.FC<Props> = ({cat, visible}) => {
 
 const styles = StyleSheet.create({
   touchable: {flex: 1, flexDirection: 'row', padding: 5},
+  name: {fontFamily: 'Amatic-Bold', fontSize: 24},
 });
 
 export default CatThumbnail;

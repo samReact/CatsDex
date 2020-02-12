@@ -10,7 +10,10 @@ import {
   Title,
   Right,
   FooterTab,
+  Text,
 } from 'native-base';
+
+import {StyleSheet} from 'react-native';
 
 import CatsList from './CatsList';
 import CatUpdateModal from './CatUpdateModal';
@@ -23,7 +26,7 @@ const Home = () => {
           <Icon name="cat" type="MaterialCommunityIcons" />
         </Left>
         <Body>
-          <Title>CatsDex</Title>
+          <Title style={styles.title}>CatsDex</Title>
         </Body>
         <Right />
       </Header>
@@ -38,5 +41,9 @@ const Home = () => {
     </Container>
   );
 };
+
+const styles = StyleSheet.create({
+  title: {fontFamily: 'Amatic-Bold', fontSize: 28},
+});
 
 export default Home;
