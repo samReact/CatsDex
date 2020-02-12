@@ -8,6 +8,8 @@ import {
   Button,
   Text,
   View,
+  Picker,
+  Icon,
 } from 'native-base';
 import validator from 'validator';
 import {ScrollView, StyleSheet} from 'react-native';
@@ -16,6 +18,7 @@ import {useHistory, useLocation} from 'react-router-native';
 import {IState} from '../reducers/cats.reducer';
 import {UPDATE_CAT, ADD_CAT} from '../actions/types/cats.actions.types';
 import {useDispatch, useSelector} from 'react-redux';
+import {breeds} from '../constants/datas.constants';
 
 const CatForm: React.FC = () => {
   const [name, setName] = useState('');
@@ -91,11 +94,22 @@ const CatForm: React.FC = () => {
           <Input onChangeText={e => setUrl(e)} defaultValue={cat.url} />
         </Item>
         <Item
-          stackedLabel
-          success={!validator.isEmpty(breed)}
-          error={validator.isEmpty(breed)}>
-          <Label>Breed</Label>
-          <Input onChangeText={e => setBreed(e)} defaultValue={cat.breed} />
+          picker
+          error={validator.isEmpty(breed)}
+          success={!validator.isEmpty(breed)}>
+          <Picker
+            mode="dropdown"
+            iosIcon={<Icon name="arrow-down" />}
+            style={{width: undefined}}
+            placeholder="Select cat's breed"
+            placeholderStyle={{color: '#bfc6ea'}}
+            placeholderIconColor="#007aff"
+            selectedValue={breed}
+            onValueChange={e => setBreed(e)}>
+            {breeds.map((e, i) => (
+              <Picker.Item key={i} label={e} value={e} />
+            ))}
+          </Picker>
         </Item>
       </Form>
       <Form style={styles.form}>
@@ -114,7 +128,7 @@ const CatForm: React.FC = () => {
           style={styles.button}
           disabled={!ready}
           onPress={() => handleSubmit()}>
-          <Text>Submit</Text>
+          <Text style={styles.buttonText}>Submit</Text>
         </Button>
       </View>
     </ScrollView>
@@ -124,7 +138,12 @@ const CatForm: React.FC = () => {
 const styles = StyleSheet.create({
   form: {marginTop: 20},
   buttonView: {marginTop: 30},
-  button: {justifyContent: 'center'},
+  button: {
+    justifyContent: 'center',
+  },
+  buttonText: {
+    fontSize: 24,
+  },
 });
 
 export default CatForm;

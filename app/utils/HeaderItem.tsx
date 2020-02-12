@@ -20,7 +20,7 @@ const HeaderItem: React.FC<Props> = ({pathname}) => {
       titleName = 'Update Me !';
   }
   return (
-    <Header style={styles.header}>
+    <Header>
       <Left>
         <Icon name="cat" type="MaterialCommunityIcons" style={styles.icon} />
       </Left>
@@ -35,7 +35,6 @@ const HeaderItem: React.FC<Props> = ({pathname}) => {
 const styles = StyleSheet.create({
   title: {fontFamily: 'Amatic-Bold', fontSize: 28},
   icon: {color: '#fff', fontSize: 35},
-  header: {backgroundColor: '#ff585f'},
 });
 
 export default HeaderItem;

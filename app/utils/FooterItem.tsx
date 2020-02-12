@@ -3,6 +3,7 @@ import {StyleSheet} from 'react-native';
 import {useHistory} from 'react-router-native';
 
 import {Footer, Icon, FooterTab, Button} from 'native-base';
+import colorsConstants from '../constants/colors.constants';
 
 type Props = {
   pathname: string;
@@ -44,9 +45,9 @@ const FooterItem: React.FC<Props> = ({pathname}) => {
 
 const styles = StyleSheet.create({
   content: {flex: 1, padding: 10},
-  icon: {color: '#BBB', fontSize: 30},
-  activeicon: {color: '#ff585f', fontSize: 30},
-  footer: {backgroundColor: '#fff'},
+  icon: {color: colorsConstants.gray, fontSize: 30},
+  activeicon: {color: colorsConstants.primary, fontSize: 30},
+  footer: {backgroundColor: colorsConstants.white},
 });
 
 export default FooterItem;

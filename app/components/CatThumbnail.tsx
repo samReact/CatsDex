@@ -2,6 +2,7 @@ import React from 'react';
 import {Thumbnail, Text, View} from 'native-base';
 import {ICat} from '../reducers/cats.reducer';
 import {StyleSheet, TouchableHighlight} from 'react-native';
+import colorsConstants from '../constants/colors.constants';
 
 type Props = {
   cat: ICat;
@@ -37,12 +38,16 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     padding: 5,
-    backgroundColor: '#FFF',
-    borderBottomColor: '#DDD',
+    backgroundColor: colorsConstants.white,
+    borderBottomColor: colorsConstants.gray,
     borderBottomWidth: 1,
   },
   nameView: {paddingLeft: 20},
-  name: {fontFamily: 'Amatic-Bold', fontSize: 24},
+  name: {
+    fontFamily: 'Amatic-Bold',
+    fontSize: 24,
+    color: colorsConstants.secondary,
+  },
 });
 
 export default CatThumbnail;

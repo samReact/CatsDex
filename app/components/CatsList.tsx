@@ -8,6 +8,7 @@ import {Icon, Button} from 'native-base';
 import {IState} from '../reducers/cats.reducer';
 import CatModal from './CatModal';
 import {DELETE_CAT} from '../actions/types/cats.actions.types';
+import colorsConstants from '../constants/colors.constants';
 
 const CatsList: React.FC = () => {
   const cats = useSelector((state: IState) => state.cats);
@@ -21,18 +22,16 @@ const CatsList: React.FC = () => {
         renderItem={data => <CatModal cat={data.item} />}
         renderHiddenItem={data => (
           <View style={styles.rowBack}>
-            <View style={[styles.backRightBtn, styles.backRightBtnLeft]}>
-              <Button
-                onPress={() => {
-                  history.push({
-                    pathname: '/updateCat',
-                    state: {cat: data.item},
-                  });
-                }}
-                transparent>
-                <Icon name={'edit'} type="Feather" style={styles.icon} />
-              </Button>
-            </View>
+            <TouchableOpacity
+              style={[styles.backRightBtn, styles.backRightBtnLeft]}
+              onPress={() => {
+                history.push({
+                  pathname: '/updateCat',
+                  state: {cat: data.item},
+                });
+              }}>
+              <Icon name={'edit'} type="Feather" style={styles.icon} />
+            </TouchableOpacity>
 
             <TouchableOpacity
               onPress={() => dispatch({payload: data.item, type: DELETE_CAT})}
@@ -67,14 +66,14 @@ const styles = StyleSheet.create({
     width: 75,
   },
   backRightBtnLeft: {
-    backgroundColor: 'orange',
+    backgroundColor: colorsConstants.warning,
     right: 75,
   },
   backRightBtnRight: {
-    backgroundColor: 'red',
+    backgroundColor: colorsConstants.danger,
     right: 0,
   },
-  icon: {color: '#fff', fontSize: 20},
+  icon: {color: colorsConstants.white, fontSize: 20},
 });
 
 export default CatsList;
