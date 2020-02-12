@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {persistStore, persistReducer} from 'redux-persist';
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import AsyncStorage from '@react-native-community/async-storage';
+import SplashScreen from 'react-native-splash-screen';
 
 import catsReducer from '../reducers/cats.reducer';
 import Home from './Home';
@@ -26,6 +27,7 @@ const store = createStore(
 const persistor = persistStore(store);
 
 const App: React.FC = () => {
+  useEffect(() => SplashScreen.hide(), []);
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>

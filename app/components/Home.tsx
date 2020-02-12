@@ -11,6 +11,7 @@ import {
   Right,
   FooterTab,
 } from 'native-base';
+
 import CatsList from './CatsList';
 import CatUpdateModal from './CatUpdateModal';
 
