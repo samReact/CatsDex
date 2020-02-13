@@ -23,6 +23,7 @@ const CatForm: React.FC = () => {
   const [name, setName] = useState('');
   const [breed, setBreed] = useState('');
   const [url, setUrl] = useState('');
+  const [gender, setGender] = useState('');
   const [description, setDescription] = useState('');
   const [ready, setReady] = useState(false);
 
@@ -39,6 +40,7 @@ const CatForm: React.FC = () => {
       setBreed(cat.breed);
       setUrl(cat.url);
       setDescription(cat.description);
+      setGender(cat.gender);
     }
   }, [cat]);
 
@@ -47,23 +49,27 @@ const CatForm: React.FC = () => {
       !validator.isEmpty(name) &&
       validator.isURL(url) &&
       !validator.isEmpty(description) &&
-      !validator.isEmpty(breed)
+      !validator.isEmpty(breed) &&
+      !validator.isEmpty(gender)
     ) {
       setReady(true);
     } else {
       setReady(false);
     }
-  }, [name, breed, url, description]);
+  }, [name, breed, url, description, gender]);
 
   const handleSubmit = () => {
     if (cat) {
       dispatch({
-        payload: {id: cat.id, name, breed, url, description},
+        payload: {id: cat.id, name, breed, url, gender, description},
         type: UPDATE_CAT,
       });
     } else {
       let id = counter + 1;
-      dispatch({payload: {id, name, breed, url, description}, type: ADD_CAT});
+      dispatch({
+        payload: {id, name, breed, url, gender, description},
+        type: ADD_CAT,
+      });
     }
     history.push('/');
   };
@@ -113,6 +119,24 @@ const CatForm: React.FC = () => {
           {breeds.map((e, i) => (
             <Picker.Item key={i} label={e} value={e} />
           ))}
+        </Picker>
+      </Item>
+      <Item
+        picker
+        style={styles.marginTop}
+        error={validator.isEmpty(gender)}
+        success={!validator.isEmpty(gender)}>
+        <Picker
+          mode="dropdown"
+          iosIcon={<Icon name="arrow-down" />}
+          style={{width: undefined}}
+          placeholder="Select cat's gender"
+          placeholderStyle={{color: '#bfc6ea'}}
+          placeholderIconColor="#007aff"
+          selectedValue={gender}
+          onValueChange={e => setGender(e)}>
+          <Picker.Item label={'Male'} value={'m'} />
+          <Picker.Item label={'Female'} value={'f'} />
         </Picker>
       </Item>
       <Form style={styles.marginTop}>

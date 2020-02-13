@@ -11,6 +11,7 @@ export interface ICat {
   url: string;
   description: string;
   breed: string;
+  gender: string;
 }
 
 export interface IState {

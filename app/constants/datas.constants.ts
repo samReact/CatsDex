@@ -24,6 +24,7 @@ export const cats = [
     id: 0,
     name: 'Oliver',
     breed: 'Asian Semi-longhair',
+    gender: 'm',
     url:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Tiffanie_at_cat_show.jpg/200px-Tiffanie_at_cat_show.jpg',
     description:
@@ -31,8 +32,9 @@ export const cats = [
   },
   {
     id: 1,
-    name: 'Leo',
+    name: 'Lea',
     breed: 'Bengal',
+    gender: 'f',
     url:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/BengalCat_Stella.jpg/200px-BengalCat_Stella.jpg',
     description:
@@ -42,6 +44,7 @@ export const cats = [
     id: 2,
     name: 'Milo',
     breed: 'Birman',
+    gender: 'm',
     url:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Birman2.jpg/200px-Birman2.jpg',
     description:
@@ -49,8 +52,9 @@ export const cats = [
   },
   {
     id: 3,
-    name: 'Patouche',
+    name: 'Patouchette',
     breed: 'American Bobtail',
+    gender: 'f',
     url:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/American_bobtail_2.jpg/200px-American_bobtail_2.jpg',
     description:
@@ -60,6 +64,7 @@ export const cats = [
     id: 4,
     name: 'Orcha',
     breed: 'Persian',
+    gender: 'f',
     url:
       'https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Persialainen.jpg/200px-Persialainen.jpg',
     description:

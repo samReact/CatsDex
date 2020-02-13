@@ -10,7 +10,10 @@ type Props = {
 };
 
 const CatThumbnail: React.FC<Props> = ({cat, visible}) => {
-  const {name, url, breed} = cat;
+  const {name, url, breed, gender} = cat;
+
+  const genderColor =
+    gender === 'm' ? colorsConstants.secondary : colorsConstants.primary;
   return (
     <TouchableHighlight
       onPress={visible}
@@ -22,17 +25,13 @@ const CatThumbnail: React.FC<Props> = ({cat, visible}) => {
             uri: url,
           }}
         />
-        <View style={styles.nameView}>
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-            }}>
-            <Text style={styles.name}>{name}</Text>
+        <View style={styles.mainView}>
+          <View style={styles.nameView}>
+            <Text style={[styles.name, {color: genderColor}]}>{name}</Text>
             <Icon
               type="MaterialCommunityIcons"
-              name="gender-male"
-              style={{fontSize: 18, paddingLeft: 10}}
+              name={gender === 'm' ? 'gender-male' : 'gender-female'}
+              style={styles.icon}
             />
           </View>
           <Text note numberOfLines={1}>
@@ -53,12 +52,16 @@ const styles = StyleSheet.create({
     borderBottomColor: colorsConstants.gray,
     borderBottomWidth: 1,
   },
-  nameView: {paddingLeft: 20},
+  mainView: {paddingLeft: 20},
+  nameView: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   name: {
     fontFamily: 'Amatic-Bold',
     fontSize: 24,
-    color: colorsConstants.secondary,
   },
+  icon: {fontSize: 18, paddingLeft: 10},
 });
 
 export default CatThumbnail;
