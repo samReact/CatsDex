@@ -1,7 +1,16 @@
 import React from 'react';
 import {Image, StyleSheet} from 'react-native';
 
-import {Card, CardItem, Text, Button, Icon, Body, Right} from 'native-base';
+import {
+  Card,
+  CardItem,
+  Text,
+  Button,
+  Icon,
+  Body,
+  Right,
+  View,
+} from 'native-base';
 import {ICat} from '../reducers/cats.reducer';
 import colorsConstants from '../constants/colors.constants';
 
@@ -11,12 +20,26 @@ type Props = {
 };
 
 const CatCard: React.FC<Props> = ({cat, visible}) => {
+  const {name, url, breed, gender, age, description} = cat;
+  const genderColor =
+    gender === 'm' ? colorsConstants.secondary : colorsConstants.primary;
+
   return (
     <Card style={styles.card}>
       <CardItem>
         <Body>
-          <Text style={styles.name}>{cat.name}</Text>
-          <Text note>{cat.breed}</Text>
+          <View style={styles.nameView}>
+            <Text style={[styles.name, {color: genderColor}]}>{name}</Text>
+            <Icon
+              type="MaterialCommunityIcons"
+              name={gender === 'm' ? 'gender-male' : 'gender-female'}
+              style={styles.genderIcon}
+            />
+          </View>
+          <Text note>
+            {age} yr{age !== '0' && 's'}
+          </Text>
+          <Text note>{breed}</Text>
         </Body>
         <Right>
           <Button transparent onPress={visible}>
@@ -27,14 +50,14 @@ const CatCard: React.FC<Props> = ({cat, visible}) => {
       <CardItem cardBody>
         <Image
           source={{
-            uri: cat.url,
+            uri: url,
           }}
           style={styles.image}
         />
       </CardItem>
       <CardItem>
         <Body>
-          <Text note>{cat.description}</Text>
+          <Text note>{description}</Text>
         </Body>
       </CardItem>
     </Card>
@@ -50,6 +73,11 @@ const styles = StyleSheet.create({
     fontSize: 32,
     color: colorsConstants.secondary,
   },
+  nameView: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  genderIcon: {fontSize: 24, paddingLeft: 10},
 });
 
 export default CatCard;

@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
   genderIcon: {fontSize: 18, paddingLeft: 10},
-  swipeIcon: {color: colorsConstants.gray, fontSize: 44},
+  swipeIcon: {color: colorsConstants.secondary, fontSize: 44},
 });
 
 export default CatThumbnail;
