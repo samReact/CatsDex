@@ -17,7 +17,7 @@ import {useHistory, useLocation} from 'react-router-native';
 import {IState} from '../reducers/cats.reducer';
 import {UPDATE_CAT, ADD_CAT} from '../actions/types/cats.actions.types';
 import {useDispatch, useSelector} from 'react-redux';
-import {breeds} from '../constants/datas.constants';
+import {breeds, agesList} from '../constants/datas.constants';
 
 const CatForm: React.FC = () => {
   const [name, setName] = useState('');
@@ -25,6 +25,7 @@ const CatForm: React.FC = () => {
   const [url, setUrl] = useState('');
   const [gender, setGender] = useState('');
   const [description, setDescription] = useState('');
+  const [age, setAge] = useState('');
   const [ready, setReady] = useState(false);
 
   const counter = useSelector((state: IState) => state.counter);
@@ -41,6 +42,7 @@ const CatForm: React.FC = () => {
       setUrl(cat.url);
       setDescription(cat.description);
       setGender(cat.gender);
+      setAge(cat.age);
     }
   }, [cat]);
 
@@ -50,24 +52,25 @@ const CatForm: React.FC = () => {
       validator.isURL(url) &&
       !validator.isEmpty(description) &&
       !validator.isEmpty(breed) &&
-      !validator.isEmpty(gender)
+      !validator.isEmpty(gender) &&
+      !validator.isEmpty(age)
     ) {
       setReady(true);
     } else {
       setReady(false);
     }
-  }, [name, breed, url, description, gender]);
+  }, [name, breed, url, description, gender, age]);
 
   const handleSubmit = () => {
     if (cat) {
       dispatch({
-        payload: {id: cat.id, name, breed, url, gender, description},
+        payload: {id: cat.id, name, breed, url, gender, age, description},
         type: UPDATE_CAT,
       });
     } else {
       let id = counter + 1;
       dispatch({
-        payload: {id, name, breed, url, gender, description},
+        payload: {id, name, breed, url, gender, age, description},
         type: ADD_CAT,
       });
     }
@@ -112,10 +115,11 @@ const CatForm: React.FC = () => {
           iosIcon={<Icon name="arrow-down" />}
           style={{width: undefined}}
           placeholder="Select cat's breed"
-          placeholderStyle={{color: '#bfc6ea'}}
+          placeholderStyle={styles.pickerPlaceholder}
           placeholderIconColor="#007aff"
           selectedValue={breed}
           onValueChange={e => setBreed(e)}>
+          <Picker.Item label={'Breed'} value={''} />
           {breeds.map((e, i) => (
             <Picker.Item key={i} label={e} value={e} />
           ))}
@@ -131,17 +135,38 @@ const CatForm: React.FC = () => {
           iosIcon={<Icon name="arrow-down" />}
           style={{width: undefined}}
           placeholder="Select cat's gender"
-          placeholderStyle={{color: '#bfc6ea'}}
+          placeholderStyle={styles.pickerPlaceholder}
           placeholderIconColor="#007aff"
           selectedValue={gender}
           onValueChange={e => setGender(e)}>
+          <Picker.Item label={'Gender'} value={''} />
           <Picker.Item label={'Male'} value={'m'} />
           <Picker.Item label={'Female'} value={'f'} />
         </Picker>
       </Item>
+      <Item
+        picker
+        style={styles.marginTop}
+        error={validator.isEmpty(age)}
+        success={!validator.isEmpty(age)}>
+        <Picker
+          mode="dropdown"
+          iosIcon={<Icon name="arrow-down" />}
+          style={{width: undefined}}
+          placeholder="Select cat's age"
+          placeholderStyle={styles.pickerPlaceholder}
+          placeholderIconColor="#007aff"
+          selectedValue={age}
+          onValueChange={e => setAge(e)}>
+          <Picker.Item label={'Age'} value={''} />
+          {agesList.map((e, i) => (
+            <Picker.Item key={i} label={e} value={e} />
+          ))}
+        </Picker>
+      </Item>
       <Form style={styles.marginTop}>
         <Textarea
-          rowSpan={5}
+          rowSpan={4}
           defaultValue={cat.description}
           onChangeText={e => setDescription(e)}
           bordered
@@ -171,6 +196,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 24,
   },
+  pickerPlaceholder: {color: '#bfc6ea'},
 });
 
 export default CatForm;

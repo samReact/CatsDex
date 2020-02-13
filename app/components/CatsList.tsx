@@ -3,7 +3,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {SafeAreaView, View, StyleSheet, TouchableOpacity} from 'react-native';
 import {SwipeListView} from 'react-native-swipe-list-view';
 import {useHistory} from 'react-router-native';
-import {Icon, Button} from 'native-base';
+import {Icon} from 'native-base';
 
 import {IState} from '../reducers/cats.reducer';
 import CatModal from './CatModal';
@@ -19,27 +19,29 @@ const CatsList: React.FC = () => {
     <SafeAreaView>
       <SwipeListView
         data={cats}
-        renderItem={data => <CatModal cat={data.item} />}
-        renderHiddenItem={data => (
-          <View style={styles.rowBack}>
-            <TouchableOpacity
-              style={[styles.backRightBtn, styles.backRightBtnLeft]}
-              onPress={() => {
-                history.push({
-                  pathname: '/updateCat',
-                  state: {cat: data.item},
-                });
-              }}>
-              <Icon name={'edit'} type="Feather" style={styles.icon} />
-            </TouchableOpacity>
+        renderItem={data => <CatModal cat={data.item} pos={data.index} />}
+        renderHiddenItem={data => {
+          return (
+            <View style={styles.rowBack}>
+              <TouchableOpacity
+                style={[styles.backRightBtn, styles.backRightBtnLeft]}
+                onPress={() => {
+                  history.push({
+                    pathname: '/updateCat',
+                    state: {cat: data.item},
+                  });
+                }}>
+                <Icon name={'edit'} type="Feather" style={styles.icon} />
+              </TouchableOpacity>
 
-            <TouchableOpacity
-              onPress={() => dispatch({payload: data.item, type: DELETE_CAT})}
-              style={[styles.backRightBtn, styles.backRightBtnRight]}>
-              <Icon type="FontAwesome" name="trash" style={styles.icon} />
-            </TouchableOpacity>
-          </View>
-        )}
+              <TouchableOpacity
+                onPress={() => dispatch({payload: data.item, type: DELETE_CAT})}
+                style={[styles.backRightBtn, styles.backRightBtnRight]}>
+                <Icon type="FontAwesome" name="trash" style={styles.icon} />
+              </TouchableOpacity>
+            </View>
+          );
+        }}
         disableRightSwipe
         rightOpenValue={-150}
         keyExtractor={data => data.id.toString()}

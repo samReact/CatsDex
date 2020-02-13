@@ -12,6 +12,7 @@ export interface ICat {
   description: string;
   breed: string;
   gender: string;
+  age: string;
 }
 
 export interface IState {

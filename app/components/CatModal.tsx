@@ -8,9 +8,10 @@ import {ICat} from '../reducers/cats.reducer';
 
 type Props = {
   cat: ICat;
+  pos: number;
 };
 
-const CatModal: React.FC<Props> = ({cat}) => {
+const CatModal: React.FC<Props> = ({cat, pos}) => {
   const [modalVisible, setModalVisible] = useState(false);
   return (
     <>
@@ -27,7 +28,7 @@ const CatModal: React.FC<Props> = ({cat}) => {
           </Content>
         </Container>
       </Modal>
-      <CatThumbnail cat={cat} visible={() => setModalVisible(true)} />
+      <CatThumbnail cat={cat} pos={pos} visible={() => setModalVisible(true)} />
     </>
   );
 };
