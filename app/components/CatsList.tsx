@@ -16,7 +16,7 @@ const CatsList: React.FC = () => {
   const history = useHistory();
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.content}>
       <SwipeListView
         data={cats}
         renderItem={data => <CatModal cat={data.item} pos={data.index} />}
@@ -51,6 +51,7 @@ const CatsList: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
+  content: {padding: 10},
   rowBack: {
     alignItems: 'center',
     backgroundColor: '#DDD',

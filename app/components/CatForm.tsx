@@ -89,7 +89,7 @@ const CatForm: React.FC = () => {
   };
 
   return (
-    <ScrollView>
+    <ScrollView style={styles.content}>
       <Item
         regular
         style={styles.marginTop}
@@ -195,6 +195,7 @@ const CatForm: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
+  content: {padding: 10},
   marginTop: {marginTop: 20},
   buttonView: {marginTop: 30},
   button: {

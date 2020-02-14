@@ -53,7 +53,6 @@ const FooterItem: React.FC<Props> = ({pathname}) => {
 };
 
 const styles = StyleSheet.create({
-  content: {flex: 1, padding: 10},
   icon: {color: colorsConstants.gray, fontSize: 30},
   activeicon: {color: colorsConstants.primary, fontSize: 30},
   footer: {backgroundColor: colorsConstants.white},

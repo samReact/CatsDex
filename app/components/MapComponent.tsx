@@ -2,7 +2,6 @@ import React, {useEffect, useRef, useState} from 'react';
 import {StyleSheet, View, ActivityIndicator} from 'react-native';
 import MapboxGL from '@react-native-mapbox-gl/maps';
 import {featureCollection} from '../constants/datas.constants';
-import {Text} from 'native-base';
 import colorsConstants from '../constants/colors.constants';
 
 const exampleIcon = require('../assets/img/pawprint.png');

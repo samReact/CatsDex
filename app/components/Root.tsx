@@ -40,11 +40,9 @@ const Root: React.FC = () => {
       <HeaderItem pathname={pathname} />
       <SafeAreaView style={styles.content}>
         <Route path="/map" component={MapComponent} />
-        <View style={styles.view}>
-          <Route exact path="/" component={CatsList} />
-          <Route path="/addCat" component={CatForm} />
-          <Route path="/updateCat" component={CatForm} />
-        </View>
+        <Route exact path="/" component={CatsList} />
+        <Route path="/addCat" component={CatForm} />
+        <Route path="/updateCat" component={CatForm} />
       </SafeAreaView>
       <FooterItem pathname={pathname} />
     </Container>
@@ -53,7 +51,6 @@ const Root: React.FC = () => {
 
 const styles = StyleSheet.create({
   content: {flex: 1},
-  view: {padding: 10},
 });
 
 export default Root;
