@@ -1,7 +1,9 @@
-import React, {useEffect, useRef} from 'react';
-import {StyleSheet, View} from 'react-native';
+import React, {useEffect, useRef, useState} from 'react';
+import {StyleSheet, View, ActivityIndicator} from 'react-native';
 import MapboxGL from '@react-native-mapbox-gl/maps';
 import {featureCollection} from '../constants/datas.constants';
+import {Text} from 'native-base';
+import colorsConstants from '../constants/colors.constants';
 
 const exampleIcon = require('../assets/img/pawprint.png');
 
@@ -24,6 +26,8 @@ const stylesIcon = {
 };
 
 const MapComponent = () => {
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     MapboxGL.setTelemetryEnabled(false);
   }, []);
@@ -31,8 +35,15 @@ const MapComponent = () => {
 
   return (
     <View style={styles.page}>
-      <View style={styles.container}>
-        <MapboxGL.MapView style={styles.map} zoomEnabled ref={map}>
+      {loading && (
+        <ActivityIndicator size="large" color={colorsConstants.primary} />
+      )}
+      <View style={[styles.container, {opacity: loading ? 0 : 1}]}>
+        <MapboxGL.MapView
+          style={styles.map}
+          zoomEnabled
+          ref={map}
+          onDidFinishLoadingMap={() => setLoading(false)}>
           <MapboxGL.Camera defaultSettings={defaultCamera} />
           <MapboxGL.ShapeSource
             id="symbolLocationSource"
@@ -54,12 +65,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
   },
   container: {
-    height: '100%',
-    width: '100%',
-    backgroundColor: 'transparent',
+    ...StyleSheet.absoluteFillObject,
   },
   map: {
     flex: 1,
