@@ -14,11 +14,18 @@ import validator from 'validator';
 import {ScrollView, StyleSheet} from 'react-native';
 import {useHistory, useLocation} from 'react-router-native';
 
-import {IState} from '../reducers/cats.reducer';
+import {IState, ICat} from '../reducers/cats.reducer';
 import {UPDATE_CAT, ADD_CAT} from '../actions/types/cats.actions.types';
 import {useDispatch, useSelector} from 'react-redux';
 import {breeds, agesList} from '../constants/datas.constants';
 
+interface IStateLocation {
+  cat: ICat;
+}
+
+interface Ilocation {
+  state: IStateLocation;
+}
 const CatForm: React.FC = () => {
   const [name, setName] = useState('');
   const [breed, setBreed] = useState('');
@@ -31,7 +38,7 @@ const CatForm: React.FC = () => {
   const counter = useSelector((state: IState) => state.counter);
   const dispatch = useDispatch();
   const history = useHistory();
-  const location = useLocation();
+  const location: Ilocation = useLocation();
 
   const {cat} = location.state;
 

@@ -65,7 +65,7 @@ const CatCard: React.FC<Props> = ({cat, visible}) => {
 };
 
 const styles = StyleSheet.create({
-  button: {fontSize: 20, color: colorsConstants.gray},
+  button: {fontSize: 26, color: colorsConstants.gray},
   image: {height: 200, width: null, flex: 1},
   card: {flex: 1},
   name: {

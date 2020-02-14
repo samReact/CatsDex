@@ -23,7 +23,7 @@ const CatThumbnail: React.FC<Props> = ({cat, visible, pos}) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  let animatedOpacity = val =>
+  let animatedOpacity = (val: number) =>
     Animated.timing(animatedValue, {
       toValue: val,
       duration: 1000,
