@@ -78,3 +78,37 @@ export const cats = [
 ];
 
 export const agesList = [...Array(20).keys()].map(e => e.toString());
+
+export const featureCollection = {
+  type: 'FeatureCollection',
+  features: [
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [6.211513, 46.384264],
+      },
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [6.215, 46.388],
+      },
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [6.215, 46.38],
+      },
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [6.21, 46.38],
+      },
+    },
+  ],
+};

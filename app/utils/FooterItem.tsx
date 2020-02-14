@@ -39,6 +39,15 @@ const FooterItem: React.FC<Props> = ({pathname}) => {
           />
         </Button>
       </FooterTab>
+      <FooterTab style={styles.footer}>
+        <Button transparent onPress={() => history.push('/map')}>
+          <Icon
+            name={'map'}
+            type="Feather"
+            style={pathname === '/map' ? styles.activeicon : styles.icon}
+          />
+        </Button>
+      </FooterTab>
     </Footer>
   );
 };

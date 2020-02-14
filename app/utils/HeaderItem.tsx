@@ -3,14 +3,15 @@ import {StyleSheet, Image} from 'react-native';
 import {useHistory} from 'react-router-native';
 
 import {Header, Left, Icon, Body, Title, Right, Button} from 'native-base';
-const catLogo = require('../../assets/img/cat_white128.png');
+
+const catLogo = require('../assets/img/cat_white128.png');
 
 type Props = {
   pathname: string;
 };
+let titleName: string;
 
 const HeaderItem: React.FC<Props> = ({pathname}) => {
-  let titleName: string;
   switch (pathname) {
     case '/':
       titleName = 'CatsDex';
@@ -20,6 +21,9 @@ const HeaderItem: React.FC<Props> = ({pathname}) => {
       break;
     case '/updateCat':
       titleName = 'Update Me !';
+      break;
+    case '/map':
+      titleName = 'Localize Me !';
   }
   const history = useHistory();
   return (

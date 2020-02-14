@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Container} from 'native-base';
+import {Container, View} from 'native-base';
 import {StyleSheet, SafeAreaView, StatusBar, BackHandler} from 'react-native';
 import {Route, useLocation, useHistory} from 'react-router-native';
 
@@ -8,6 +8,7 @@ import CatForm from './CatForm';
 import HeaderItem from '../utils/HeaderItem';
 import FooterItem from '../utils/FooterItem';
 import colorsConstants from '../constants/colors.constants';
+import MapComponent from './MapComponent';
 
 const Root: React.FC = () => {
   const location = useLocation();
@@ -38,9 +39,12 @@ const Root: React.FC = () => {
       />
       <HeaderItem pathname={pathname} />
       <SafeAreaView style={styles.content}>
-        <Route exact path="/" component={CatsList} />
-        <Route path="/addCat" component={CatForm} />
-        <Route path="/updateCat" component={CatForm} />
+        <Route path="/map" component={MapComponent} />
+        <View style={styles.view}>
+          <Route exact path="/" component={CatsList} />
+          <Route path="/addCat" component={CatForm} />
+          <Route path="/updateCat" component={CatForm} />
+        </View>
       </SafeAreaView>
       <FooterItem pathname={pathname} />
     </Container>
@@ -48,7 +52,8 @@ const Root: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
-  content: {flex: 1, padding: 10},
+  content: {flex: 1},
+  view: {padding: 10},
 });
 
 export default Root;
