@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Container, View} from 'native-base';
+import {Container} from 'native-base';
 import {StyleSheet, SafeAreaView, StatusBar, BackHandler} from 'react-native';
 import {Route, useLocation, useHistory} from 'react-router-native';
 
@@ -39,8 +39,8 @@ const Root: React.FC = () => {
       />
       <HeaderItem pathname={pathname} />
       <SafeAreaView style={styles.content}>
-        <Route path="/map" component={MapComponent} />
         <Route exact path="/" component={CatsList} />
+        <Route path="/map" component={MapComponent} />
         <Route path="/addCat" component={CatForm} />
         <Route path="/updateCat" component={CatForm} />
       </SafeAreaView>
