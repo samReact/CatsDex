@@ -43,14 +43,14 @@ const Root: React.FC = () => {
         <Route path="/map" component={MapComponent} />
         <Route path="/addCat" component={CatForm} />
         <Route path="/updateCat" component={CatForm} />
+        <FooterItem pathname={pathname} />
       </SafeAreaView>
-      <FooterItem pathname={pathname} />
     </Container>
   );
 };
 
 const styles = StyleSheet.create({
-  content: {flex: 1},
+  content: {flex: 1, justifyContent: 'space-between'},
 });
 
 export default Root;

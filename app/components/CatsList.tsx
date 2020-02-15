@@ -1,6 +1,6 @@
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {SafeAreaView, View, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, StyleSheet, TouchableOpacity} from 'react-native';
 import {SwipeListView} from 'react-native-swipe-list-view';
 import {useHistory} from 'react-router-native';
 import {Icon} from 'native-base';
@@ -16,7 +16,7 @@ const CatsList: React.FC = () => {
   const history = useHistory();
 
   return (
-    <SafeAreaView style={styles.content}>
+    <View style={styles.content}>
       <SwipeListView
         data={cats}
         renderItem={data => <CatModal cat={data.item} pos={data.index} />}
@@ -46,12 +46,12 @@ const CatsList: React.FC = () => {
         rightOpenValue={-150}
         keyExtractor={data => data.id.toString()}
       />
-    </SafeAreaView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  content: {padding: 10},
+  content: {padding: 10, flex: 1},
   rowBack: {
     alignItems: 'center',
     backgroundColor: '#DDD',

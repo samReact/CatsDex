@@ -13,3 +13,5 @@
    `npx react-native run-android`
    or for ios:
    `npx react-native run-ios`
+
+> 🚨 Just ask me by email to provide you the missing MAP_API_KEY.
