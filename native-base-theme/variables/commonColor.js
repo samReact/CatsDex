@@ -176,7 +176,7 @@ export default {
   tabActiveBgColor: platform === PLATFORM.IOS ? '#cde1f9' : '#3F51B5',
 
   // Header
-  toolbarBtnColor: platform === PLATFORM.IOS ? '#007aff' : '#fff',
+  toolbarBtnColor: '#fff',
   toolbarDefaultBg: '#ff585f',
   toolbarHeight: platform === PLATFORM.IOS ? 64 : 56,
   toolbarSearchIconSize: platform === PLATFORM.IOS ? 20 : 23,
@@ -280,7 +280,7 @@ export default {
   titleFontSize: platform === PLATFORM.IOS ? 17 : 19,
   subTitleFontSize: platform === PLATFORM.IOS ? 11 : 14,
   subtitleColor: platform === PLATFORM.IOS ? '#000' : '#fff',
-  titleFontColor: platform === PLATFORM.IOS ? '#000' : '#fff',
+  titleFontColor: '#fff',
 
   // Other
   borderRadiusBase: platform === PLATFORM.IOS ? 5 : 2,
