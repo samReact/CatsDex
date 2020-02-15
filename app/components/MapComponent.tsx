@@ -3,17 +3,17 @@ import {StyleSheet, View, ActivityIndicator} from 'react-native';
 import MapboxGL from '@react-native-mapbox-gl/maps';
 import {featureCollection} from '../constants/datas.constants';
 import colorsConstants from '../constants/colors.constants';
+import {MAP_API_KEY} from 'react-native-dotenv';
 
 const exampleIcon = require('../assets/img/pawprint.png');
 
-MapboxGL.setAccessToken(
-  'pk.eyJ1Ijoic2FtcmVhY3QiLCJhIjoiY2s2bTk4cDJ4MGxvMjNscDY1NWR5ZTdjYiJ9.KWABLXyzEbUY0tYEwnzekA',
-);
+MapboxGL.setAccessToken(MAP_API_KEY);
 
 const defaultCamera = {
   centerCoordinate: [6.211513, 46.384264],
   zoomLevel: 14,
 };
+console.log(MAP_API_KEY);
 
 const stylesIcon = {
   icon: {
