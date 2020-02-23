@@ -13,7 +13,6 @@ const defaultCamera = {
   centerCoordinate: [6.211513, 46.384264],
   zoomLevel: 14,
 };
-console.log(MAP_API_KEY);
 
 const stylesIcon = {
   icon: {

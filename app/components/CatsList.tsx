@@ -9,6 +9,7 @@ import {IState} from '../reducers/cats.reducer';
 import CatModal from './CatModal';
 import {DELETE_CAT} from '../actions/types/cats.actions.types';
 import colorsConstants from '../constants/colors.constants';
+import {UPDATE_CAT} from '../constants/routes.constants';
 
 const CatsList: React.FC = () => {
   const cats = useSelector((state: IState) => state.cats);
@@ -27,7 +28,7 @@ const CatsList: React.FC = () => {
                 style={[styles.backRightBtn, styles.backRightBtnLeft]}
                 onPress={() => {
                   history.push({
-                    pathname: '/updateCat',
+                    pathname: UPDATE_CAT,
                     state: {cat: data.item},
                   });
                 }}>

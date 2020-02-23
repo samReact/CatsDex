@@ -9,6 +9,12 @@ import HeaderItem from '../utils/HeaderItem';
 import FooterItem from '../utils/FooterItem';
 import colorsConstants from '../constants/colors.constants';
 import MapComponent from './MapComponent';
+import {
+  CATSLIST,
+  MAP,
+  UPDATE_CAT,
+  ADD_CAT,
+} from '../constants/routes.constants';
 
 const Root: React.FC = () => {
   const location = useLocation();
@@ -25,7 +31,7 @@ const Root: React.FC = () => {
   }, [pathname]);
 
   const handleBackPress = () => {
-    if (pathname !== '/') {
+    if (pathname !== CATSLIST) {
       history.goBack();
       return true;
     }
@@ -39,10 +45,10 @@ const Root: React.FC = () => {
       />
       <HeaderItem pathname={pathname} />
       <SafeAreaView style={styles.content}>
-        <Route exact path="/" component={CatsList} />
-        <Route path="/map" component={MapComponent} />
-        <Route path="/addCat" component={CatForm} />
-        <Route path="/updateCat" component={CatForm} />
+        <Route exact path={CATSLIST} component={CatsList} />
+        <Route path={MAP} component={MapComponent} />
+        <Route path={ADD_CAT} component={CatForm} />
+        <Route path={UPDATE_CAT} component={CatForm} />
         <FooterItem pathname={pathname} />
       </SafeAreaView>
     </Container>

@@ -4,6 +4,7 @@ import {useHistory} from 'react-router-native';
 
 import {Footer, Icon, FooterTab, Button} from 'native-base';
 import colorsConstants from '../constants/colors.constants';
+import {CATSLIST, ADD_CAT, MAP} from '../constants/routes.constants';
 
 type Props = {
   pathname: string;
@@ -15,11 +16,11 @@ const FooterItem: React.FC<Props> = ({pathname}) => {
   return (
     <Footer>
       <FooterTab style={styles.footer}>
-        <Button transparent onPress={() => history.push('/')}>
+        <Button transparent onPress={() => history.push(CATSLIST)}>
           <Icon
             name={'list'}
             type="Feather"
-            style={pathname === '/' ? styles.activeicon : styles.icon}
+            style={pathname === CATSLIST ? styles.activeicon : styles.icon}
           />
         </Button>
       </FooterTab>
@@ -27,7 +28,7 @@ const FooterItem: React.FC<Props> = ({pathname}) => {
         <Button
           onPress={() =>
             history.push({
-              pathname: '/addCat',
+              pathname: ADD_CAT,
               state: {cat: false},
             })
           }
@@ -35,16 +36,16 @@ const FooterItem: React.FC<Props> = ({pathname}) => {
           <Icon
             name={'plus-circle'}
             type="Feather"
-            style={pathname === '/addCat' ? styles.activeicon : styles.icon}
+            style={pathname === ADD_CAT ? styles.activeicon : styles.icon}
           />
         </Button>
       </FooterTab>
       <FooterTab style={styles.footer}>
-        <Button transparent onPress={() => history.push('/map')}>
+        <Button transparent onPress={() => history.push(MAP)}>
           <Icon
             name={'map'}
             type="Feather"
-            style={pathname === '/map' ? styles.activeicon : styles.icon}
+            style={pathname === MAP ? styles.activeicon : styles.icon}
           />
         </Button>
       </FooterTab>

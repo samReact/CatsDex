@@ -3,7 +3,12 @@ import {StyleSheet, Image} from 'react-native';
 import {useHistory} from 'react-router-native';
 
 import {Header, Left, Icon, Body, Title, Right, Button} from 'native-base';
-
+import {
+  CATSLIST,
+  ADD_CAT,
+  UPDATE_CAT,
+  MAP,
+} from '../constants/routes.constants';
 const catLogo = require('../assets/img/cat_white128.png');
 
 type Props = {
@@ -13,23 +18,23 @@ let titleName: string;
 
 const HeaderItem: React.FC<Props> = ({pathname}) => {
   switch (pathname) {
-    case '/':
+    case CATSLIST:
       titleName = 'CatsDex';
       break;
-    case '/addCat':
+    case ADD_CAT:
       titleName = 'Add Me !';
       break;
-    case '/updateCat':
+    case UPDATE_CAT:
       titleName = 'Update Me !';
       break;
-    case '/map':
+    case MAP:
       titleName = 'Localize Me !';
   }
   const history = useHistory();
   return (
     <Header>
       <Left>
-        {pathname !== '/' ? (
+        {pathname !== CATSLIST ? (
           <Button transparent onPress={() => history.goBack()}>
             <Icon name="arrow-back" />
           </Button>
