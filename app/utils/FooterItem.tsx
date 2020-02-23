@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, View, TouchableHighlight} from 'react-native';
 import {useHistory} from 'react-router-native';
 
-import {Icon} from 'native-base';
+import Icon from '../utils/Icon';
 import colorsConstants from '../constants/colors.constants';
 import {CATSLIST, ADD_CAT, MAP} from '../constants/routes.constants';
 
@@ -21,9 +21,12 @@ const FooterItem: React.FC<Props> = ({pathname}) => {
           style={styles.touchable}
           onPress={() => history.push(CATSLIST)}>
           <Icon
-            name={'list'}
-            type="Feather"
-            style={pathname === CATSLIST ? styles.activeicon : styles.icon}
+            name="list"
+            color={
+              pathname === CATSLIST
+                ? colorsConstants.primary
+                : colorsConstants.gray
+            }
           />
         </TouchableHighlight>
         <TouchableHighlight
@@ -36,9 +39,12 @@ const FooterItem: React.FC<Props> = ({pathname}) => {
             })
           }>
           <Icon
-            name={'plus-circle'}
-            type="Feather"
-            style={pathname === ADD_CAT ? styles.activeicon : styles.icon}
+            name="plus"
+            color={
+              pathname === ADD_CAT
+                ? colorsConstants.primary
+                : colorsConstants.gray
+            }
           />
         </TouchableHighlight>
         <TouchableHighlight
@@ -46,9 +52,10 @@ const FooterItem: React.FC<Props> = ({pathname}) => {
           style={styles.touchable}
           onPress={() => history.push(MAP)}>
           <Icon
-            name={'map'}
-            type="Feather"
-            style={pathname === MAP ? styles.activeicon : styles.icon}
+            name="map"
+            color={
+              pathname === MAP ? colorsConstants.primary : colorsConstants.gray
+            }
           />
         </TouchableHighlight>
       </View>
@@ -76,8 +83,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-around',
   },
-  icon: {color: colorsConstants.gray, fontSize: 30},
-  activeicon: {color: colorsConstants.primary, fontSize: 30},
 });
 
 export default FooterItem;

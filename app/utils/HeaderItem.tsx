@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Image, View, Text, TouchableOpacity} from 'react-native';
 import {useHistory} from 'react-router-native';
 
-import {Icon} from 'native-base';
+import Icon from '../utils/Icon';
 import {
   CATSLIST,
   ADD_CAT,
@@ -10,6 +10,7 @@ import {
   MAP,
 } from '../constants/routes.constants';
 import colorsConstants from '../constants/colors.constants';
+
 const catLogo = require('../assets/img/cat_white128.png');
 
 type Props = {
@@ -38,7 +39,7 @@ const HeaderItem: React.FC<Props> = ({pathname}) => {
         <View style={styles.left}>
           {pathname !== CATSLIST ? (
             <TouchableOpacity onPress={() => history.goBack()}>
-              <Icon name="arrow-back" style={styles.icon} />
+              <Icon name="arrow" color={colorsConstants.white} />
             </TouchableOpacity>
           ) : (
             <Image source={catLogo} style={styles.image} />
@@ -73,7 +74,6 @@ const styles = StyleSheet.create({
   },
   right: {flex: 1, alignItems: 'flex-end'},
   image: {width: 34, height: 34},
-  icon: {color: colorsConstants.white},
 });
 
 export default HeaderItem;

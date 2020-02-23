@@ -1,8 +1,10 @@
 import React, {useEffect} from 'react';
-import {Thumbnail, Text, View, Icon} from 'native-base';
+import {Thumbnail, Text, View} from 'native-base';
 import {ICat} from '../reducers/cats.reducer';
 import {StyleSheet, TouchableHighlight, Animated} from 'react-native';
 import colorsConstants from '../constants/colors.constants';
+
+import Icon from '../utils/Icon';
 
 type Props = {
   cat: ICat;
@@ -52,11 +54,9 @@ const CatThumbnail: React.FC<Props> = ({cat, visible, pos}) => {
         <View style={styles.mainView}>
           <View style={styles.nameView}>
             <Text style={[styles.name, {color: genderColor}]}>{name}</Text>
-            <Icon
-              type="MaterialCommunityIcons"
-              name={gender === 'm' ? 'gender-male' : 'gender-female'}
-              style={styles.genderIcon}
-            />
+            <View style={styles.genderView}>
+              <Icon name={gender === 'm' ? 'male' : 'female'} color={'#888'} />
+            </View>
           </View>
           <Text note>
             {age} yr{age !== '0' && 's'}
@@ -67,11 +67,7 @@ const CatThumbnail: React.FC<Props> = ({cat, visible, pos}) => {
         </View>
         {pos === 0 && (
           <Animated.View style={{opacity: animatedValue}}>
-            <Icon
-              type="MaterialCommunityIcons"
-              name="gesture-swipe-left"
-              style={styles.swipeIcon}
-            />
+            <Icon name="swipe" color={colorsConstants.secondary} />
           </Animated.View>
         )}
       </View>
@@ -96,8 +92,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Amatic-Bold',
     fontSize: 24,
   },
-  genderIcon: {fontSize: 18, paddingLeft: 10},
-  swipeIcon: {color: colorsConstants.secondary, fontSize: 44},
+  genderView: {paddingLeft: 10},
 });
 
 export default CatThumbnail;
