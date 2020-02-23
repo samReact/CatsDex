@@ -208,6 +208,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 24,
+    fontFamily: 'Amatic-Bold',
   },
   pickerPlaceholder: {color: colorsConstants.gray},
 });

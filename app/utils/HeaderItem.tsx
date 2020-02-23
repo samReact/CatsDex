@@ -1,14 +1,15 @@
 import React from 'react';
-import {StyleSheet, Image} from 'react-native';
+import {StyleSheet, Image, View, Text, TouchableOpacity} from 'react-native';
 import {useHistory} from 'react-router-native';
 
-import {Header, Left, Icon, Body, Title, Right, Button} from 'native-base';
+import {Icon} from 'native-base';
 import {
   CATSLIST,
   ADD_CAT,
   UPDATE_CAT,
   MAP,
 } from '../constants/routes.constants';
+import colorsConstants from '../constants/colors.constants';
 const catLogo = require('../assets/img/cat_white128.png');
 
 type Props = {
@@ -32,27 +33,47 @@ const HeaderItem: React.FC<Props> = ({pathname}) => {
   }
   const history = useHistory();
   return (
-    <Header>
-      <Left>
-        {pathname !== CATSLIST ? (
-          <Button transparent onPress={() => history.goBack()}>
-            <Icon name="arrow-back" />
-          </Button>
-        ) : (
-          <Image source={catLogo} style={styles.image} />
-        )}
-      </Left>
-      <Body>
-        <Title style={styles.title}>{titleName}</Title>
-      </Body>
-      <Right />
-    </Header>
+    <View style={styles.container}>
+      <View style={styles.view}>
+        <View style={styles.left}>
+          {pathname !== CATSLIST ? (
+            <TouchableOpacity onPress={() => history.goBack()}>
+              <Icon name="arrow-back" style={styles.icon} />
+            </TouchableOpacity>
+          ) : (
+            <Image source={catLogo} style={styles.image} />
+          )}
+        </View>
+        <View style={styles.titleView}>
+          <Text style={styles.title}>{titleName}</Text>
+        </View>
+        <View style={styles.right} />
+      </View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  title: {fontFamily: 'Amatic-Bold', fontSize: 28},
+  container: {
+    height: 60,
+    backgroundColor: colorsConstants.primary,
+    padding: 10,
+  },
+  view: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
+  },
+  left: {flex: 1},
+  titleView: {flex: 1, alignItems: 'center'},
+  title: {
+    fontFamily: 'Amatic-Bold',
+    fontSize: 28,
+    color: colorsConstants.white,
+  },
+  right: {flex: 1, alignItems: 'flex-end'},
   image: {width: 34, height: 34},
+  icon: {color: colorsConstants.white},
 });
 
 export default HeaderItem;

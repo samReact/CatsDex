@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import {Container} from 'native-base';
 import {StyleSheet, SafeAreaView, StatusBar, BackHandler} from 'react-native';
 import {Route, useLocation, useHistory} from 'react-router-native';
 
@@ -38,20 +37,20 @@ const Root: React.FC = () => {
   };
 
   return (
-    <Container>
+    <>
       <StatusBar
         backgroundColor={colorsConstants.primary}
         barStyle="light-content"
       />
-      <HeaderItem pathname={pathname} />
       <SafeAreaView style={styles.content}>
+        <HeaderItem pathname={pathname} />
         <Route exact path={CATSLIST} component={CatsList} />
         <Route path={MAP} component={MapComponent} />
         <Route path={ADD_CAT} component={CatForm} />
         <Route path={UPDATE_CAT} component={CatForm} />
         <FooterItem pathname={pathname} />
       </SafeAreaView>
-    </Container>
+    </>
   );
 };
 

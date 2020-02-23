@@ -6,9 +6,6 @@ import {PersistGate} from 'redux-persist/integration/react';
 import AsyncStorage from '@react-native-community/async-storage';
 import SplashScreen from 'react-native-splash-screen';
 import {NativeRouter} from 'react-router-native';
-import {StyleProvider} from 'native-base';
-import commonColor from '../../native-base-theme/variables/commonColor';
-import getTheme from '../../native-base-theme/components';
 
 import catsReducer from '../reducers/cats.reducer';
 import Root from './Root';
@@ -36,9 +33,7 @@ const App: React.FC = () => {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <NativeRouter>
-          <StyleProvider style={getTheme(commonColor)}>
-            <Root />
-          </StyleProvider>
+          <Root />
         </NativeRouter>
       </PersistGate>
     </Provider>

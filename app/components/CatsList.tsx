@@ -54,18 +54,18 @@ const CatsList: React.FC = () => {
 const styles = StyleSheet.create({
   content: {padding: 10, flex: 1},
   rowBack: {
-    alignItems: 'center',
-    backgroundColor: '#DDD',
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: '#DDD',
     paddingLeft: 15,
   },
   backRightBtn: {
     alignItems: 'center',
-    bottom: 0,
     justifyContent: 'center',
     position: 'absolute',
+    bottom: 0,
     top: 0,
     width: 75,
   },
