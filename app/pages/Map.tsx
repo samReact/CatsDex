@@ -23,7 +23,7 @@ const stylesIcon = {
   },
 };
 
-const MapComponent = () => {
+const Map: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -72,4 +72,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MapComponent;
+export default Map;

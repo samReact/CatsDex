@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {Modal, StyleSheet, View} from 'react-native';
 
-import CatThumbnail from './CatThumbnail';
-import CatCard from './CatCard';
+import CatThumbnail from '../components/CatThumbnail';
+import CatCard from '../components/CatCard';
 import {ICat} from '../reducers/cats.reducer';
 
 type Props = {
@@ -22,7 +22,7 @@ const CatModal: React.FC<Props> = ({cat, pos}) => {
           setModalVisible(false);
         }}>
         <View style={styles.container}>
-          <View padder style={styles.content}>
+          <View style={styles.content}>
             <CatCard cat={cat} visible={() => setModalVisible(false)} />
           </View>
         </View>

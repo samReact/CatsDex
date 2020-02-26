@@ -7,6 +7,7 @@ import arrowIcon from '../assets/icons/arrow-left.svg';
 import maleIcon from '../assets/icons/male.svg';
 import femaleIcon from '../assets/icons/female.svg';
 import swipeIcon from '../assets/icons/swipe.svg';
+import closeIcon from '../assets/icons/x.svg';
 
 type IconProps = {
   name: string;
@@ -29,6 +30,8 @@ const Icon: React.FC<IconProps> = ({name, color}) => {
       return <SvgXml xml={femaleIcon} color={color} width="22" height="22" />;
     case 'swipe':
       return <SvgXml xml={swipeIcon} color={color} width="44" height="44" />;
+    case 'close':
+      return <SvgXml xml={closeIcon} color={color} width="28" height="28" />;
     default:
       return <SvgXml xml={mapIcon} color={color} width="28" height="28" />;
   }

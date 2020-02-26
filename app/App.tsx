@@ -7,7 +7,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import SplashScreen from 'react-native-splash-screen';
 import {NativeRouter} from 'react-router-native';
 
-import catsReducer from '../reducers/cats.reducer';
+import catsReducer from './reducers/cats.reducer';
 import Root from './Root';
 
 declare global {

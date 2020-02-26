@@ -1,18 +1,10 @@
 import React from 'react';
-import {Image, StyleSheet} from 'react-native';
+import {Image, StyleSheet, View, Text, TouchableHighlight} from 'react-native';
 
-import {
-  Card,
-  CardItem,
-  Text,
-  Button,
-  Icon,
-  Body,
-  Right,
-  View,
-} from 'native-base';
 import {ICat} from '../reducers/cats.reducer';
 import colorsConstants from '../constants/colors.constants';
+
+import Icon from '../utils/Icon';
 
 type Props = {
   cat: ICat;
@@ -25,59 +17,66 @@ const CatCard: React.FC<Props> = ({cat, visible}) => {
     gender === 'm' ? colorsConstants.secondary : colorsConstants.primary;
 
   return (
-    <Card style={styles.card}>
-      <CardItem>
-        <Body>
+    <View style={styles.card}>
+      <View style={styles.cardView}>
+        <View>
           <View style={styles.nameView}>
             <Text style={[styles.name, {color: genderColor}]}>{name}</Text>
-            <Icon
-              type="MaterialCommunityIcons"
-              name={gender === 'm' ? 'gender-male' : 'gender-female'}
-              style={styles.genderIcon}
-            />
+            <Icon name={gender === 'm' ? 'male' : 'female'} color={'#888'} />
           </View>
-          <Text note>
+          <Text style={styles.textSecondary}>
             {age} yr{age !== '0' && 's'}
           </Text>
-          <Text note>{breed}</Text>
-        </Body>
-        <Right>
-          <Button transparent onPress={visible}>
-            <Icon type="FontAwesome" name="close" style={styles.button} />
-          </Button>
-        </Right>
-      </CardItem>
-      <CardItem cardBody>
+          <Text style={styles.textSecondary}>{breed}</Text>
+        </View>
+        <TouchableHighlight
+          underlayColor={colorsConstants.textSecondary}
+          style={styles.touchable}
+          onPress={visible}>
+          <Icon name="close" color={colorsConstants.darkGray} />
+        </TouchableHighlight>
+      </View>
+      <View style={styles.imageView}>
         <Image
           source={{
             uri: url,
           }}
           style={styles.image}
+          resizeMode="cover"
         />
-      </CardItem>
-      <CardItem>
-        <Body>
-          <Text note>{description}</Text>
-        </Body>
-      </CardItem>
-    </Card>
+      </View>
+      <View style={styles.descriptionView}>
+        <Text style={styles.textSecondary}>{description}</Text>
+      </View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  button: {fontSize: 26, color: colorsConstants.gray},
-  image: {height: 200, width: null, flex: 1},
   card: {flex: 1},
-  name: {
-    fontFamily: 'Amatic-Bold',
-    fontSize: 32,
-    color: colorsConstants.secondary,
+  cardView: {
+    backgroundColor: colorsConstants.white,
+    padding: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   nameView: {
     flexDirection: 'row',
     alignItems: 'center',
   },
-  genderIcon: {fontSize: 24, paddingLeft: 10},
+  name: {
+    fontFamily: 'Amatic-Bold',
+    fontSize: 32,
+    color: colorsConstants.secondary,
+  },
+  textSecondary: {fontSize: 14, color: colorsConstants.textSecondary},
+
+  imageView: {height: 200},
+  image: {flex: 1},
+  descriptionView: {backgroundColor: colorsConstants.white, padding: 10},
+  touchable: {
+    paddingTop: 10,
+  },
 });
 
 export default CatCard;
