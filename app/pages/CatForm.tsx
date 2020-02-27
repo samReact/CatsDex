@@ -1,15 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {
-  Item,
-  Form,
-  Input,
-  Textarea,
-  Button,
-  Text,
-  View,
-  Picker,
-  Icon,
-} from 'native-base';
+import {Item, Button, Text, View, Picker, Icon} from 'native-base';
 import validator from 'validator';
 import {ScrollView, StyleSheet, KeyboardAvoidingView} from 'react-native';
 import {useHistory, useLocation} from 'react-router-native';
@@ -19,6 +9,7 @@ import {UPDATE_CAT, ADD_CAT} from '../actions/types/cats.actions.types';
 import {useDispatch, useSelector} from 'react-redux';
 import {breeds, agesList} from '../constants/datas.constants';
 import colorsConstants from '../constants/colors.constants';
+import Input from '../components/Input';
 
 interface IStateLocation {
   cat: ICat;
@@ -85,105 +76,89 @@ const CatForm: React.FC = () => {
     history.push('/');
   };
 
-  const textareaStyle = [
-    styles.marginTop,
-    {borderColor: validator.isEmpty(description) ? 'red' : 'green'},
-  ];
-
   return (
     <ScrollView>
       <KeyboardAvoidingView style={styles.view} behavior="padding" enabled>
-        <Form style={styles.marginTop}>
-          <Item
-            regular
-            success={!validator.isEmpty(name)}
-            error={validator.isEmpty(name)}>
-            <Input
-              onChangeText={e => setName(e)}
-              defaultValue={cat.name || name}
-              placeholder="Name"
-            />
-          </Item>
-          <Item
-            regular
-            style={styles.marginTop}
-            success={validator.isURL(url)}
-            error={!validator.isURL(url)}>
-            <Input
-              onChangeText={e => setUrl(e)}
-              defaultValue={cat.url}
-              placeholder="Photo url"
-            />
-          </Item>
-          <Item
-            picker
-            style={styles.marginTop}
-            error={validator.isEmpty(breed)}
-            success={!validator.isEmpty(breed)}>
-            <Picker
-              mode="dropdown"
-              iosIcon={<Icon name="arrow-down" />}
-              style={{width: undefined}}
-              placeholder="Select cat's breed"
-              placeholderStyle={styles.pickerPlaceholder}
-              placeholderIconColor="#007aff"
-              selectedValue={breed}
-              onValueChange={e => setBreed(e)}>
-              <Picker.Item label={'Breed'} value={''} />
-              {breeds.map((e, i) => (
-                <Picker.Item key={i} label={e} value={e} />
-              ))}
-            </Picker>
-          </Item>
-          <Item
-            picker
-            style={styles.marginTop}
-            error={validator.isEmpty(gender)}
-            success={!validator.isEmpty(gender)}>
-            <Picker
-              mode="dropdown"
-              iosIcon={<Icon name="arrow-down" />}
-              style={{width: undefined}}
-              placeholder="Select cat's gender"
-              placeholderStyle={styles.pickerPlaceholder}
-              placeholderIconColor="#007aff"
-              selectedValue={gender}
-              onValueChange={e => setGender(e)}>
-              <Picker.Item label={'Gender'} value={''} />
-              <Picker.Item label={'Male'} value={'m'} />
-              <Picker.Item label={'Female'} value={'f'} />
-            </Picker>
-          </Item>
-          <Item
-            picker
-            style={styles.marginTop}
-            error={validator.isEmpty(age)}
-            success={!validator.isEmpty(age)}>
-            <Picker
-              mode="dropdown"
-              iosIcon={<Icon name="arrow-down" />}
-              style={{width: undefined}}
-              placeholder="Select cat's age"
-              placeholderStyle={styles.pickerPlaceholder}
-              placeholderIconColor="#007aff"
-              selectedValue={age}
-              onValueChange={e => setAge(e)}>
-              <Picker.Item label={'Age'} value={''} />
-              {agesList.map((e, i) => (
-                <Picker.Item key={i} label={e} value={e} />
-              ))}
-            </Picker>
-          </Item>
-          <Textarea
-            rowSpan={4}
-            defaultValue={cat.description}
-            onChangeText={e => setDescription(e)}
-            bordered
-            underline={false}
-            placeholder="Description"
-            style={textareaStyle}
-          />
-        </Form>
+        <Input
+          onChangeText={e => setName(e)}
+          defaultValue={cat.name || name}
+          placeholder="Name"
+          error={validator.isEmpty(name)}
+        />
+        <Input
+          error={!validator.isURL(url)}
+          onChangeText={e => setUrl(e)}
+          defaultValue={cat.url}
+          placeholder="Photo url"
+        />
+
+        <Item
+          picker
+          style={styles.marginTop}
+          error={validator.isEmpty(breed)}
+          success={!validator.isEmpty(breed)}>
+          <Picker
+            mode="dropdown"
+            iosIcon={<Icon name="arrow-down" />}
+            style={{width: undefined}}
+            placeholder="Select cat's breed"
+            placeholderStyle={styles.pickerPlaceholder}
+            placeholderIconColor="#007aff"
+            selectedValue={breed}
+            onValueChange={e => setBreed(e)}>
+            <Picker.Item label={'Breed'} value={''} />
+            {breeds.map((e, i) => (
+              <Picker.Item key={i} label={e} value={e} />
+            ))}
+          </Picker>
+        </Item>
+        <Item
+          picker
+          style={styles.marginTop}
+          error={validator.isEmpty(gender)}
+          success={!validator.isEmpty(gender)}>
+          <Picker
+            mode="dropdown"
+            iosIcon={<Icon name="arrow-down" />}
+            style={{width: undefined}}
+            placeholder="Select cat's gender"
+            placeholderStyle={styles.pickerPlaceholder}
+            placeholderIconColor="#007aff"
+            selectedValue={gender}
+            onValueChange={e => setGender(e)}>
+            <Picker.Item label={'Gender'} value={''} />
+            <Picker.Item label={'Male'} value={'m'} />
+            <Picker.Item label={'Female'} value={'f'} />
+          </Picker>
+        </Item>
+        <Item
+          picker
+          style={styles.marginTop}
+          error={validator.isEmpty(age)}
+          success={!validator.isEmpty(age)}>
+          <Picker
+            mode="dropdown"
+            iosIcon={<Icon name="arrow-down" />}
+            style={{width: undefined}}
+            placeholder="Select cat's age"
+            placeholderStyle={styles.pickerPlaceholder}
+            placeholderIconColor="#007aff"
+            selectedValue={age}
+            onValueChange={e => setAge(e)}>
+            <Picker.Item label={'Age'} value={''} />
+            {agesList.map((e, i) => (
+              <Picker.Item key={i} label={e} value={e} />
+            ))}
+          </Picker>
+        </Item>
+        <Input
+          multiline
+          numberOfLines={4}
+          defaultValue={cat.description}
+          onChangeText={e => setDescription(e)}
+          placeholder="Description"
+          error={validator.isEmpty(description)}
+        />
         <View style={styles.buttonView}>
           <Button
             style={styles.button}
