@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, View, TouchableHighlight} from 'react-native';
 import {useHistory} from 'react-router-native';
 
-import Icon from '../utils/Icon';
+import Icon from './Icon';
 import colorsConstants from '../constants/colors.constants';
 import {CATSLIST, ADD_CAT, MAP} from '../constants/routes.constants';
 

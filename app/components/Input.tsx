@@ -23,7 +23,7 @@ const Input: React.FC<InputProps> = (props: InputProps) => {
     borderColor: props.error ? colorsConstants.danger : colorsConstants.success,
   };
   const multilinesStyle = {
-    height: props.multiline ? 80 : 45,
+    height: props.multiline ? 90 : 45,
   };
   return (
     <TextInput

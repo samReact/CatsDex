@@ -4,7 +4,7 @@ import {Image, StyleSheet, View, Text, TouchableHighlight} from 'react-native';
 import {ICat} from '../reducers/cats.reducer';
 import colorsConstants from '../constants/colors.constants';
 
-import Icon from '../utils/Icon';
+import Icon from './Icon';
 
 type Props = {
   cat: ICat;

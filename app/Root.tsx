@@ -4,8 +4,8 @@ import {Route, useLocation, useHistory} from 'react-router-native';
 
 import CatsList from './pages/CatsList';
 import CatForm from './pages/CatForm';
-import HeaderItem from './utils/HeaderItem';
-import FooterItem from './utils/FooterItem';
+import HeaderItem from './components/Header';
+import FooterItem from './components/Footer';
 import colorsConstants from './constants/colors.constants';
 import Map from './pages/Map';
 import {CATSLIST, MAP, UPDATE_CAT, ADD_CAT} from './constants/routes.constants';

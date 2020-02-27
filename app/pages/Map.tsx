@@ -31,12 +31,14 @@ const Map: React.FC = () => {
   }, []);
   const map = useRef(null);
 
+  const opacityToggle = {opacity: loading ? 0 : 1};
+
   return (
     <View style={styles.page}>
       {loading && (
         <ActivityIndicator size="large" color={colorsConstants.primary} />
       )}
-      <View style={[styles.container, {opacity: loading ? 0 : 1}]}>
+      <View style={[styles.container, opacityToggle]}>
         <MapboxGL.MapView
           style={styles.map}
           zoomEnabled

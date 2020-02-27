@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Image, View, Text, TouchableOpacity} from 'react-native';
 import {useHistory} from 'react-router-native';
 
-import Icon from '../utils/Icon';
+import Icon from './Icon';
 import {
   CATSLIST,
   ADD_CAT,
