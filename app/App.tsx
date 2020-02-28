@@ -8,7 +8,7 @@ import SplashScreen from 'react-native-splash-screen';
 import {NativeRouter} from 'react-router-native';
 
 import catsReducer from './reducers/cats.reducer';
-import Root from './Root';
+import Router from './Router';
 
 declare global {
   interface Window {
@@ -33,7 +33,7 @@ const App: React.FC = () => {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <NativeRouter>
-          <Root />
+          <Router />
         </NativeRouter>
       </PersistGate>
     </Provider>

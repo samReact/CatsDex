@@ -11,7 +11,7 @@ type Props = {
   visible: () => void;
 };
 
-const CatCard: React.FC<Props> = ({cat, visible}) => {
+const Card: React.FC<Props> = ({cat, visible}) => {
   const {name, url, breed, gender, age, description} = cat;
   const genderColor =
     gender === 'm' ? colorsConstants.secondary : colorsConstants.primary;
@@ -79,4 +79,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CatCard;
+export default Card;

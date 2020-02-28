@@ -1,7 +1,13 @@
 import React, {useEffect} from 'react';
-import {Thumbnail, Text, View} from 'native-base';
 import {ICat} from '../reducers/cats.reducer';
-import {StyleSheet, TouchableHighlight, Animated} from 'react-native';
+import {
+  StyleSheet,
+  TouchableHighlight,
+  Animated,
+  View,
+  Text,
+  Image,
+} from 'react-native';
 import colorsConstants from '../constants/colors.constants';
 
 import Icon from './Icon';
@@ -14,7 +20,7 @@ type Props = {
 
 let animatedValue = new Animated.Value(0);
 
-const CatThumbnail: React.FC<Props> = ({cat, visible, pos}) => {
+const Thumbnail: React.FC<Props> = ({cat, visible, pos}) => {
   const {name, url, breed, gender, age} = cat;
 
   const genderColor =
@@ -46,10 +52,11 @@ const CatThumbnail: React.FC<Props> = ({cat, visible, pos}) => {
       style={styles.touchable}
       underlayColor={'#DDD'}>
       <View style={styles.firstView}>
-        <Thumbnail
+        <Image
           source={{
             uri: url,
           }}
+          style={styles.image}
         />
         <View style={styles.mainView}>
           <View style={styles.nameView}>
@@ -58,12 +65,10 @@ const CatThumbnail: React.FC<Props> = ({cat, visible, pos}) => {
               <Icon name={gender === 'm' ? 'male' : 'female'} color={'#888'} />
             </View>
           </View>
-          <Text note>
+          <Text style={styles.textSecondary}>
             {age} yr{age !== '0' && 's'}
           </Text>
-          <Text note numberOfLines={1}>
-            {breed}
-          </Text>
+          <Text style={styles.textSecondary}>{breed}</Text>
         </View>
         {pos === 0 && (
           <Animated.View style={{opacity: animatedValue}}>
@@ -93,6 +98,12 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
   genderView: {paddingLeft: 10},
+  textSecondary: {fontSize: 14, color: colorsConstants.textSecondary},
+  image: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+  },
 });
 
-export default CatThumbnail;
+export default Thumbnail;

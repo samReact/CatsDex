@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {Modal, StyleSheet, View} from 'react-native';
 
-import CatThumbnail from '../components/CatThumbnail';
-import CatCard from '../components/CatCard';
+import CatThumbnail from '../components/Thumbnail';
+import CatCard from '../components/Card';
 import {ICat} from '../reducers/cats.reducer';
 
 type Props = {

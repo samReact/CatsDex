@@ -3,7 +3,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {View, StyleSheet, TouchableOpacity} from 'react-native';
 import {SwipeListView} from 'react-native-swipe-list-view';
 import {useHistory} from 'react-router-native';
-import {Icon} from 'native-base';
+import Icon from '../components/Icon';
 
 import {IState} from '../reducers/cats.reducer';
 import CatModal from './CatModal';
@@ -32,13 +32,12 @@ const CatsList: React.FC = () => {
                     state: {cat: data.item},
                   });
                 }}>
-                <Icon name={'edit'} type="Feather" style={styles.icon} />
+                <Icon name="edit" color={colorsConstants.white} />
               </TouchableOpacity>
-
               <TouchableOpacity
                 onPress={() => dispatch({payload: data.item, type: DELETE_CAT})}
                 style={[styles.backRightBtn, styles.backRightBtnRight]}>
-                <Icon type="FontAwesome" name="trash" style={styles.icon} />
+                <Icon name="trash" color={colorsConstants.white} />
               </TouchableOpacity>
             </View>
           );

@@ -10,7 +10,7 @@ import colorsConstants from './constants/colors.constants';
 import Map from './pages/Map';
 import {CATSLIST, MAP, UPDATE_CAT, ADD_CAT} from './constants/routes.constants';
 
-const Root: React.FC = () => {
+const Router: React.FC = () => {
   const location = useLocation();
   const history = useHistory();
   const {pathname} = location;
@@ -53,4 +53,4 @@ const styles = StyleSheet.create({
   content: {flex: 1, justifyContent: 'space-between'},
 });
 
-export default Root;
+export default Router;
