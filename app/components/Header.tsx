@@ -18,7 +18,8 @@ type Props = {
 };
 let titleName: string;
 
-const HeaderItem: React.FC<Props> = ({pathname}) => {
+const HeaderItem: React.FC<Props> = (props: Props) => {
+  const {pathname} = props;
   switch (pathname) {
     case CATSLIST:
       titleName = 'CatsDex';

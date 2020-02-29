@@ -24,7 +24,7 @@ const stylesIcon = {
 };
 
 const Map: React.FC = () => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     MapboxGL.setTelemetryEnabled(false);

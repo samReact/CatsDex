@@ -10,8 +10,9 @@ type Props = {
   pos: number;
 };
 
-const CatModal: React.FC<Props> = ({cat, pos}) => {
-  const [modalVisible, setModalVisible] = useState(false);
+const CatModal: React.FC<Props> = (props: Props) => {
+  const {cat, pos} = props;
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
   return (
     <>
       <Modal

@@ -20,7 +20,8 @@ type Props = {
 
 let animatedValue = new Animated.Value(0);
 
-const Thumbnail: React.FC<Props> = ({cat, visible, pos}) => {
+const Thumbnail: React.FC<Props> = (props: Props) => {
+  const {cat, visible, pos} = props;
   const {name, url, breed, gender, age} = cat;
 
   const genderColor =

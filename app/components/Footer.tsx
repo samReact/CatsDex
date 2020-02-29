@@ -10,7 +10,8 @@ type Props = {
   pathname: string;
 };
 
-const FooterItem: React.FC<Props> = ({pathname}) => {
+const FooterItem: React.FC<Props> = (props: Props) => {
+  const {pathname} = props;
   const history = useHistory();
 
   return (

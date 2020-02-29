@@ -4,7 +4,7 @@ export const breeds = [
   'American Bobtail',
   'Asian Semi-longhair',
   'Bengal',
-  'Birman	',
+  'Birman',
   'British Shorthair',
   'Cyprus',
   'Donskoy',
@@ -18,6 +18,8 @@ export const breeds = [
   'Sphynx',
   'York Chocolate',
 ];
+
+export const genders = ['m', 'f'];
 
 export const cats = [
   {

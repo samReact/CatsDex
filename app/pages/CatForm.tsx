@@ -13,7 +13,7 @@ import {useHistory, useLocation} from 'react-router-native';
 import {IState, ICat} from '../reducers/cats.reducer';
 import {UPDATE_CAT, ADD_CAT} from '../actions/types/cats.actions.types';
 import {useDispatch, useSelector} from 'react-redux';
-import {breeds, agesList} from '../constants/datas.constants';
+import {breeds, agesList, genders} from '../constants/datas.constants';
 import colorsConstants from '../constants/colors.constants';
 import Input from '../components/Input';
 
@@ -27,13 +27,16 @@ interface Ilocation {
   state: IStateLocation;
 }
 const CatForm: React.FC = () => {
-  const [name, setName] = useState('');
-  const [breed, setBreed] = useState('');
-  const [url, setUrl] = useState('');
-  const [gender, setGender] = useState('');
-  const [description, setDescription] = useState('');
-  const [age, setAge] = useState('');
-  const [ready, setReady] = useState(false);
+  const [datas, setDatas] = useState<ICat>({
+    id: 0,
+    name: '',
+    url: '',
+    description: '',
+    breed: '',
+    gender: '',
+    age: '',
+  });
+  const [ready, setReady] = useState<boolean>(false);
 
   const counter = useSelector((state: IState) => state.counter);
   const dispatch = useDispatch();
@@ -41,15 +44,11 @@ const CatForm: React.FC = () => {
   const location: Ilocation = useLocation();
 
   const {cat} = location.state;
+  const {id, name, url, description, breed, gender, age} = datas;
 
   useEffect(() => {
     if (cat) {
-      setName(cat.name);
-      setBreed(cat.breed);
-      setUrl(cat.url);
-      setDescription(cat.description);
-      setGender(cat.gender);
-      setAge(cat.age);
+      setDatas(cat);
     }
   }, [cat]);
 
@@ -71,17 +70,29 @@ const CatForm: React.FC = () => {
   const handleSubmit = () => {
     if (cat) {
       dispatch({
-        payload: {id: cat.id, name, breed, url, gender, age, description},
+        payload: {id, name, breed, url, gender, age, description},
         type: UPDATE_CAT,
       });
     } else {
-      let id = counter + 1;
+      let incrementedId = counter + 1;
       dispatch({
-        payload: {id, name, breed, url, gender, age, description},
+        payload: {
+          id: incrementedId,
+          name,
+          breed,
+          url,
+          gender,
+          age,
+          description,
+        },
         type: ADD_CAT,
       });
     }
     history.push('/');
+  };
+
+  const handleDataChange = (value: string, inputName: string) => {
+    setDatas({...datas, [inputName]: value});
   };
 
   const buttonStyle = {
@@ -92,14 +103,14 @@ const CatForm: React.FC = () => {
     <ScrollView>
       <KeyboardAvoidingView style={styles.view} behavior="padding" enabled>
         <Input
-          onChangeText={e => setName(e)}
+          onChangeText={e => handleDataChange(e, 'name')}
           defaultValue={cat.name || name}
           placeholder="Name"
           error={validator.isEmpty(name)}
         />
         <Input
           error={!validator.isURL(url)}
-          onChangeText={e => setUrl(e)}
+          onChangeText={e => handleDataChange(e, 'url')}
           defaultValue={cat.url}
           placeholder="Photo url"
         />
@@ -108,27 +119,27 @@ const CatForm: React.FC = () => {
           error={validator.isEmpty(breed)}
           list={breeds}
           selectedValue={breed}
-          onValueChange={(e: string) => setBreed(e)}
+          onValueChange={e => handleDataChange(e, 'breed')}
         />
         <Picker
           mode="dropdown"
           error={validator.isEmpty(gender)}
           selectedValue={gender}
-          onValueChange={e => setGender(e)}
-          list={['Male', 'Female']}
+          onValueChange={e => handleDataChange(e, 'gender')}
+          list={genders}
         />
         <Picker
           mode="dropdown"
           error={validator.isEmpty(age)}
           selectedValue={age}
-          onValueChange={e => setAge(e)}
+          onValueChange={e => handleDataChange(e, 'age')}
           list={agesList}
         />
         <Input
           multiline
           numberOfLines={5}
           defaultValue={cat.description}
-          onChangeText={e => setDescription(e)}
+          onChangeText={e => handleDataChange(e, 'description')}
           placeholder="Description"
           error={validator.isEmpty(description)}
         />

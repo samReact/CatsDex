@@ -16,7 +16,9 @@ type IconProps = {
   color: string;
 };
 
-const Icon: React.FC<IconProps> = ({name, color}) => {
+const Icon: React.FC<IconProps> = (props: IconProps) => {
+  const {color, name} = props;
+
   switch (name) {
     case 'list':
       return <SvgXml xml={listIcon} color={color} width="28" height="28" />;

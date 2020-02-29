@@ -11,7 +11,8 @@ type Props = {
   visible: () => void;
 };
 
-const Card: React.FC<Props> = ({cat, visible}) => {
+const Card: React.FC<Props> = (props: Props) => {
+  const {cat, visible} = props;
   const {name, url, breed, gender, age, description} = cat;
   const genderColor =
     gender === 'm' ? colorsConstants.secondary : colorsConstants.primary;
